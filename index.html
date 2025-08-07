@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>遊戲傷害計算器</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2em;
+      max-width: 600px;
+      margin: auto;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input {
+      width: 100%;
+      padding: 6px;
+      margin-top: 4px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #b22222;
+    }
+  </style>
+</head>
+<body>
+  <h1>遊戲傷害計算器</h1>
+
+  <form id="damage-form">
+    <label>基礎技能傷害 <input type="number" id="baseSkill" value="100" /></label>
+    <label>技能傷害% <input type="number" id="skillPercent" value="150" /></label>
+    <label>面板傷害值 <input type="number" id="panelDamage" value="200" /></label>
+    <label>傷害% <input type="number" id="damagePercent" value="120" /></label>
+    <label>技傷% <input type="number" id="techBonus" value="30" /></label>
+    <label>屬傷% <input type="number" id="elementBonus" value="15" /></label>
+    <label>對屬傷% <input type="number" id="targetElementBonus" value="10" /></label>
+    <label>主武器傷% <input type="number" id="weaponBonus" value="20" /></label>
+    <label>等差 <input type="number" id="levelDiff" value="80" /></label>
+    <label>屬抗% <input type="number" id="elementResist" value="10" /></label>
+    <label>防禦減傷% <input type="number" id="defenseReduction" value="5" /></label>
+    <label>爆擊傷害% <input type="number" id="critDamage" value="220" /></label>
+    <label>受到爆擊傷害降低% <input type="number" id="critReduce" value="10" /></label>
+    <label>造傷（例如 1.1 為 +10%）<input type="number" step="0.01" id="finalDamageMult" value="1.1" /></label>
+    <label>減傷（例如 0.95 為減少 5%）<input type="number" step="0.01" id="damageReduceMult" value="0.95" /></label>
+
+    <button type="button" onclick="calculateDamage()">計算傷害</button>
+  </form>
+
+  <div id="result"></div>
+
+  <script>
+    function calculateDamage() {
+      // 取值
+      const baseSkill = parseFloat(document.getElementById('baseSkill').value);
+      const skillPercent = parseFloat(document.getElementById('skillPercent').value);
+      const panelDamage = parseFloat(document.getElementById('panelDamage').value);
+      const damagePercent = parseFloat(document.getElementById('damagePercent').value);
+      const techBonus = parseFloat(document.getElementById('techBonus').value);
+      const elementBonus = parseFloat(document.getElementById('elementBonus').value);
+      const targetElementBonus = parseFloat(document.getElementById('targetElementBonus').value);
+      const weaponBonus = parseFloat(document.getElementById('weaponBonus').value);
+      const levelDiff = parseFloat(document.getElementById('levelDiff').value);
+      const elementResist = parseFloat(document.getElementById('elementResist').value);
+      const defenseReduction = parseFloat(document.getElementById('defenseReduction').value);
+      const critDamage = parseFloat(document.getElementById('critDamage').value);
+      const critReduce = parseFloat(document.getElementById('critReduce').value);
+      const finalDamageMult = parseFloat(document.getElementById('finalDamageMult').value);
+      const damageReduceMult = parseFloat(document.getElementById('damageReduceMult').value);
+
+      // 計算主體傷害值
+      const rawDamage =
+        baseSkill * (skillPercent / 100) +
+        panelDamage * (damagePercent / 100) +
+        techBonus +
+        elementBonus +
+        targetElementBonus +
+        weaponBonus +
+        (0.005 * levelDiff) -
+        elementResist -
+        defenseReduction;
+
+      // 爆擊修正
+      const critMultiplier = (critDamage - critReduce) / 100;
+
+      // 總計
+      const finalDamage = rawDamage * critMultiplier * finalDamageMult * damageReduceMult;
+
+      // 顯示結果
+      document.getElementById('result').innerText =
+        '👉 實際傷害為：' + finalDamage.toFixed(2);
+    }
+  </script>
+</body>
+</html>
