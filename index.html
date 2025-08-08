@@ -20,30 +20,33 @@
       padding: 1rem;
       z-index: 1030;
     }
-    input.form-control {
+    input.form-control, span.input-group-text, .form-control:focus {
       background-color: #2a2a2a;
       color: #fff;
-      border: 1px solid #444;
+      border: 1px solid #2a2a2a;
     }
+	.form-control::placeholder {
+		color: #fff;		
+	}
   </style>
 </head>
 <body>
 <div class="container py-4">
-  <h1 class="text-center mb-4">🧮 遊戲傷害計算器</h1>
+  <h1 class="text-center mb-4">幻想神域全球服－傷害計算</h1>
 
   <form id="damageForm">
-    <div class="row mb-3">
-      <div class="col-md-6">
-        <label for="panelDamage" class="form-label">人物面板傷害</label>        		
+    <div class="row mb-3">	  
+      <div class="col-md-6">        
+		<label for="panelDamage" class="form-label">人物面板傷害</label>
 		<div class="input-group">
-			<input type="number" class="form-control" id="panelDamage" value="74058">
+			<input type="number" class="form-control" id="panelDamage" value="74058" maxlength="6">			
 			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('panelDamage')">清除</button>
 		</div>
       </div>
 	  <div class="col-md-6">
         <label for="skillPanel" class="form-label">技能面板傷害</label>
 		<div class="input-group">
-			<input type="number" class="form-control" id="skillPanel" value="75555">
+			<input type="number" class="form-control" id="skillPanel" value="75555" >			
 			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('skillPanel')">清除</button>
 		</div>
       </div>      
@@ -62,21 +65,23 @@
       <div class="col-md-6">
         <label for="damagePercent" class="form-label">傷害%</label>
 		<div class="input-group">
-			<input type="number" class="form-control" id="damagePercent" value="100">
+			<input type="number" class="form-control" id="damagePercent" value="100" placeholder="0">
+			<span class="input-group-text">%</span>
 			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('damagePercent')">清除</button>
 		</div>
       </div>
       <div class="col-md-6">
         <label for="skillDamagePercent" class="form-label">技能傷害%</label>
 		<div class="input-group">
-			<input type="number" class="form-control" id="skillDamagePercent" value="100">
+			<input type="number" class="form-control" id="skillDamagePercent" value="100" placeholder="0">
+			<span class="input-group-text">%</span>
 			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('skillDamagePercent')">清除</button>
 		</div>
       </div>
     </div>
 	<div class="row mb-3">
 		<div class="col-md-6">
-			<label for="damageHide" class="form-label">隱藏表傷</label>
+			<label for="damageHide" class="form-label">實際表傷 (反算)</label>
 			<input type="number" readonly class="form-control" id="damageHide" value="">	
 		</div>
 		<div class="col-md-6">
@@ -86,14 +91,16 @@
       <div class="col-md-6">
         <label for="extraDamage" class="form-label">技傷% (提高XX技能傷害%)</label>
 		<div class="input-group">
-			<input type="number" class="form-control" id="extraDamage" value="0">
+			<input type="number" class="form-control" id="extraDamage" value="0" placeholder="0">
+			<span class="input-group-text">%</span>
 			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('extraDamage')">清除</button>
 		</div>
       </div>
       <div class="col-md-6">
         <label for="elementDamage" class="form-label">屬傷% (XX屬性技能傷害提高%)</label>
 		<div class="input-group">
-			<input type="number" class="form-control" id="elementDamage" value="10">
+			<input type="number" class="form-control" id="elementDamage" value="10" placeholder="0">
+			<span class="input-group-text">%</span>
 			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('elementDamage')">清除</button>
 		</div>
       </div>
@@ -102,25 +109,27 @@
       <div class="col-md-6">
         <label for="targetElementDamage" class="form-label">對屬傷% (對XX屬性的傷害提高%)</label>
 		<div class="input-group">
-			<input type="number" class="form-control" id="targetElementDamage" value="10">
+			<input type="number" class="form-control" id="targetElementDamage" value="10" placeholder="0">
+			<span class="input-group-text">%</span>
 			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('targetElementDamage')">清除</button>
 		</div>
       </div>
       <div class="col-md-6">
         <label for="mainWeaponDamage" class="form-label">主武器傷% (主武器的傷害提高%)</label>
 		<div class="input-group">
-			<input type="number" class="form-control" id="mainWeaponDamage" value="0">
+			<input type="number" class="form-control" id="mainWeaponDamage" value="0" placeholder="0">
+			<span class="input-group-text">%</span>
 			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('mainWeaponDamage')">清除</button>
 		</div>
       </div>
     </div>
 	<div class="form-check mb-3">
       <input class="form-check-input" type="checkbox" id="weaponElementMatch">
-      <label class="form-check-label" for="weaponElementMatch">武器屬性同技能屬性</label>
+      <label class="form-check-label" for="weaponElementMatch">武器屬性同技能屬性 (同屬性傷害提高20%)</label>
     </div>
     <div class="form-check mb-3">
       <input class="form-check-input" type="checkbox" id="skillElementMatch">
-      <label class="form-check-label" for="skillElementMatch">技能屬性同敵人屬性</label>
+      <label class="form-check-label" for="skillElementMatch">技能屬性同敵人屬性 (受到同屬性傷害降低25%)</label>
     </div>
 	<div class="row mb-3">
 	  <div class="col-md-6">
@@ -128,52 +137,64 @@
         <select id="levelDiff" class="form-select"></select>
       </div>
 	  <div class="col-md-6">        
+		<label for="EleDmgTaken" class="form-label">扣屬抗% (受到XX屬性的傷害提高%)</label>
+		<div class="input-group">
+			<input type="number" class="form-control" id="EleDmgTaken" value="0" placeholder="0">
+			<span class="input-group-text">%</span>
+			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('EleDmgTaken')">清除</button>
+		</div>
       </div>
 	</div>
     <div class="row mb-3">      
       <div class="col-md-6">
+        <label for="critDmg" class="form-label">爆擊傷害%</label>
+		<div class="input-group">
+			<input type="number" class="form-control" id="critDmg" value="130" placeholder="0">
+			<span class="input-group-text">%</span>
+			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('critDmg')">清除</button>
+		</div>
+      </div>
+	  <div class="col-md-6">
+        <label for="targetBonus" class="form-label">造傷% (對XX目標的傷害提高%)</label>
+		<div class="input-group">
+			<input type="number" class="form-control" id="targetBonus" value="10" placeholder="0">
+			<span class="input-group-text">%</span>
+			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('targetBonus')">清除</button>
+		</div>
+      </div>
+    </div>
+	<div class="row mb-3">      
+      <div class="col-md-6">
         <label for="resist" class="form-label">屬抗%</label>
 		<div class="input-group">
-			<input type="number" class="form-control" id="resist" value="0">
+			<input type="number" class="form-control" id="resist" value="0" placeholder="0">
+			<span class="input-group-text">%</span>
 			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('resist')">清除</button>
 		</div>
       </div>
 	  <div class="col-md-6">
         <label for="defReduction" class="form-label">防禦減傷%</label>
 		<div class="input-group">
-			<input type="number" class="form-control" id="defReduction" value="0">
+			<input type="number" class="form-control" id="defReduction" value="0" placeholder="0">
+			<span class="input-group-text">%</span>
 			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('defReduction')">清除</button>
 		</div>
       </div>
     </div>
     <div class="row mb-3">      
       <div class="col-md-6">
-        <label for="critDmg" class="form-label">爆擊傷害%</label>
-		<div class="input-group">
-			<input type="number" class="form-control" id="critDmg" value="130">
-			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('critDmg')">清除</button>
-		</div>
-      </div>
-	  <div class="col-md-6">
         <label for="critResist" class="form-label">受到爆擊傷害降低%</label>
 		<div class="input-group">
-			<input type="number" class="form-control" id="critResist" value="0">
+			<input type="number" class="form-control" id="critResist" value="0" placeholder="0">
+			<span class="input-group-text">%</span>
 			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('critResist')">清除</button>
-		</div>
-      </div>
-    </div>
-    <div class="row mb-3">      
-      <div class="col-md-6">
-        <label for="targetBonus" class="form-label">造傷% (對XX目標的傷害提高%)</label>
-		<div class="input-group">
-			<input type="number" class="form-control" id="targetBonus" value="10">
-			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('targetBonus')">清除</button>
 		</div>
       </div>
 	  <div class="col-md-6">
 		<label for="finalReduce" class="form-label">減傷% (受到XX的傷害降低%)</label>
 		<div class="input-group">
-			<input type="number" class="form-control" id="finalReduce" value="0">
+			<input type="number" class="form-control" id="finalReduce" value="0" placeholder="0">
+			<span class="input-group-text">%</span>
 			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('finalReduce')">清除</button>
 		</div>
 	  </div>
@@ -256,11 +277,12 @@ function calculateDamage() {
   const crit = (get('critDmg') - get('critResist')) / 100;
   const bonus = 1 + get('targetBonus') / 100;
   const reduce = 1 - get('finalReduce') / 100;
+  const EleDmgTaken = get('EleDmgTaken') / 100;
   
-  document.getElementById('damageHide').value = (skillPanel - (base * skillPct)) / dmgPct;
+  document.getElementById('damageHide').value = Math.round((skillPanel - (base * skillPct)) / dmgPct, 0);
   let damageHide = get('damageHide');
 
-  let raw = (base * skillPct + damageHide * (dmgPct + tech + elem + elem2 + weapon + weleMatch + lvDiff - resist - def - resistMatch));
+  let raw = (base * skillPct + damageHide * (dmgPct + tech + elem + elem2 + weapon + weleMatch + EleDmgTaken + lvDiff - resist - def - resistMatch));
   let nonCritAvg = raw * bonus * reduce;
   let critAvg = raw * crit * bonus * reduce;
 
