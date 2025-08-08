@@ -27,83 +27,121 @@
 
 <div class="container py-4">
   <h1 class="text-center mb-4">🧮 遊戲傷害計算器</h1>
-
-  <!-- 輸入資料表格（精簡展示） -->
-  <div class="table-responsive">
-    <table class="table table-dark table-bordered">
-      <tbody>
-        <tr>
-          <th>人物面板傷害</th>
-          <td>74,058</td>
-          <th>技能等級</th>
-          <td>75</td>
-        </tr>
-        <tr>
-          <th>技能面板傷害</th>
-          <td>75,555</td>
-          <th>基礎技能傷害</th>
-          <td>22,055</td>
-        </tr>
-        <tr>
-          <th>傷害%</th>
-          <td>100%</td>
-          <th>技能傷害%</th>
-          <td>100%</td>
-        </tr>
-        <tr>
-          <th>技傷%</th>
-          <td>0%</td>
-          <th>屬抗%</th>
-          <td>0%</td>
-        </tr>
-        <tr>
-          <th>屬傷%</th>
-          <td>10%</td>
-          <th>防禦減傷%</th>
-          <td>0%</td>
-        </tr>
-        <tr>
-          <th>對屬傷%</th>
-          <td>10%</td>
-          <th>主武器傷%</th>
-          <td>0%</td>
-        </tr>
-        <tr>
-          <th>等差</th>
-          <td colspan="3">自身 70 - 敵人 65</td>
-        </tr>
-        <tr>
-          <th>爆擊傷害%</th>
-          <td>130%</td>
-          <th>受到爆擊傷害降低%</th>
-          <td>0%</td>
-        </tr>
-        <tr>
-          <th>造傷%</th>
-          <td>10%</td>
-          <th>減傷%</th>
-          <td>0%</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <form id="damageForm" class="row g-3">
+    <div class="col-md-6">
+      <label class="form-label">人物面板傷害</label>
+      <input type="number" class="form-control" id="panel" value="74058">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">技能等級</label>
+      <input type="number" class="form-control" id="skillLevel" value="75">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">技能面板傷害</label>
+      <input type="number" class="form-control" id="skillPanel" value="75555">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">基礎技能傷害</label>
+      <input type="number" class="form-control" id="baseSkill" value="22055">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">傷害%</label>
+      <input type="number" class="form-control" id="dmgPercent" value="100">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">技能傷害%</label>
+      <input type="number" class="form-control" id="skillDmgPercent" value="100">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">技傷%</label>
+      <input type="number" class="form-control" id="techBonus" value="0">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">屬傷%</label>
+      <input type="number" class="form-control" id="elementBonus" value="10">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">對屬傷%</label>
+      <input type="number" class="form-control" id="targetElementBonus" value="10">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">主武器傷%</label>
+      <input type="number" class="form-control" id="weaponBonus" value="0">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">自身等級</label>
+      <input type="number" class="form-control" id="playerLevel" value="70">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">敵人等級</label>
+      <input type="number" class="form-control" id="enemyLevel" value="65">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">屬抗%</label>
+      <input type="number" class="form-control" id="elementResist" value="0">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">防禦減傷%</label>
+      <input type="number" class="form-control" id="defenseReduction" value="0">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">爆擊傷害%</label>
+      <input type="number" class="form-control" id="critDamage" value="130">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">受到爆擊傷害降低%</label>
+      <input type="number" class="form-control" id="critReduce" value="0">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">造傷%</label>
+      <input type="number" class="form-control" id="finalDamageMult" value="10">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">減傷%</label>
+      <input type="number" class="form-control" id="damageReduceMult" value="0">
+    </div>
+    <div class="col-12 text-center">
+      <button type="button" class="btn btn-primary" onclick="calculateDamage()">計算</button>
+    </div>
+  </form>
 </div>
 
 <!-- 固定底部結果顯示 -->
-<div class="fixed-bottom-bar">
-  <div class="container">
-    <div class="row text-center">
-      <div class="col-md-6 mb-2 mb-md-0">
-        <h5 class="mb-1">🔥 實際傷害（非爆）</h5>
-        <div>平均：96,352｜最小：86,717｜最大：105,987</div>
-      </div>
-      <div class="col-md-6">
-        <h5 class="mb-1">💥 實際傷害（爆擊）</h5>
-        <div>平均：125,257｜最小：112,732｜最大：137,783</div>
-      </div>
-    </div>
+<div class="fixed-bottom-bar text-center">
+  <div>
+    <strong>實際傷害（非爆）：</strong> <span id="nonCrit">-</span> ｜
+    <strong>實際傷害（爆擊）：</strong> <span id="crit">-</span>
   </div>
 </div>
+
+<script>
+  function calculateDamage() {
+    const getVal = id => parseFloat(document.getElementById(id).value) || 0;
+    const baseSkill = getVal('baseSkill');
+    const skillDmg = getVal('skillDmgPercent') / 100;
+    const panel = getVal('panel');
+    const dmgPercent = getVal('dmgPercent') / 100;
+    const tech = getVal('techBonus');
+    const ele = getVal('elementBonus');
+    const vsEle = getVal('targetElementBonus');
+    const weapon = getVal('weaponBonus');
+    const levelDiff = getVal('playerLevel') - getVal('enemyLevel');
+    const eleRes = getVal('elementResist');
+    const defReduce = getVal('defenseReduction');
+    const critDmg = getVal('critDamage');
+    const critResist = getVal('critReduce');
+    const finalMult = (getVal('finalDamageMult') / 100) + 1;
+    const reduceMult = 1 - (getVal('damageReduceMult') / 100);
+
+    const raw = (baseSkill * skillDmg) + (panel * dmgPercent) + tech + ele + vsEle + weapon + (0.005 * levelDiff) - eleRes - defReduce;
+    const critMult = (critDmg - critResist) / 100;
+    const dmgNonCrit = raw * finalMult * reduceMult;
+    const dmgCrit = raw * critMult * finalMult * reduceMult;
+
+    document.getElementById('nonCrit').textContent = dmgNonCrit.toFixed(0);
+    document.getElementById('crit').textContent = dmgCrit.toFixed(0);
+  }
+</script>
 
 </body>
 </html>
