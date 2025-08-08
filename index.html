@@ -1,139 +1,109 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>遊戲傷害計算器</title>
-  <!-- Bootstrap 5 CDN -->
+  <!-- Bootstrap 5 dark theme -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #121212;
+      color: #f1f1f1;
+    }
+    .fixed-bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #1f1f1f;
+      border-top: 1px solid #333;
+      padding: 1rem;
+      z-index: 1030;
+    }
+  </style>
 </head>
-<body class="bg-light">
+<body>
 
-<div class="container py-5">
+<div class="container py-4">
   <h1 class="text-center mb-4">🧮 遊戲傷害計算器</h1>
-  <div class="card shadow">
-    <div class="card-body">
-      <form id="damage-form" class="row g-3">
 
-        <!-- 輸入欄位群組 -->
-        <div class="col-md-6">
-          <label class="form-label">基礎技能傷害</label>
-          <input type="number" class="form-control" id="baseSkill" value="100">
-        </div>
-        <div class="col-md-6">
-          <label class="form-label">技能傷害%</label>
-          <input type="number" class="form-control" id="skillPercent" value="150">
-        </div>
-
-        <div class="col-md-6">
-          <label class="form-label">面板傷害值</label>
-          <input type="number" class="form-control" id="panelDamage" value="200">
-        </div>
-        <div class="col-md-6">
-          <label class="form-label">傷害%</label>
-          <input type="number" class="form-control" id="damagePercent" value="120">
-        </div>
-
-        <div class="col-md-6">
-          <label class="form-label">技傷%</label>
-          <input type="number" class="form-control" id="techBonus" value="30">
-        </div>
-        <div class="col-md-6">
-          <label class="form-label">屬傷%</label>
-          <input type="number" class="form-control" id="elementBonus" value="15">
-        </div>
-
-        <div class="col-md-6">
-          <label class="form-label">對屬傷%</label>
-          <input type="number" class="form-control" id="targetElementBonus" value="10">
-        </div>
-        <div class="col-md-6">
-          <label class="form-label">主武器傷%</label>
-          <input type="number" class="form-control" id="weaponBonus" value="20">
-        </div>
-
-        <div class="col-md-6">
-          <label class="form-label">等差</label>
-          <input type="number" class="form-control" id="levelDiff" value="80">
-        </div>
-        <div class="col-md-6">
-          <label class="form-label">屬抗%</label>
-          <input type="number" class="form-control" id="elementResist" value="10">
-        </div>
-
-        <div class="col-md-6">
-          <label class="form-label">防禦減傷%</label>
-          <input type="number" class="form-control" id="defenseReduction" value="5">
-        </div>
-        <div class="col-md-6">
-          <label class="form-label">爆擊傷害%</label>
-          <input type="number" class="form-control" id="critDamage" value="220">
-        </div>
-
-        <div class="col-md-6">
-          <label class="form-label">受到爆擊傷害降低%</label>
-          <input type="number" class="form-control" id="critReduce" value="10">
-        </div>
-        <div class="col-md-6">
-          <label class="form-label">造傷（例如 1.1 為 +10%）</label>
-          <input type="number" step="0.01" class="form-control" id="finalDamageMult" value="1.1">
-        </div>
-
-        <div class="col-md-6">
-          <label class="form-label">減傷（例如 0.95 為減少 5%）</label>
-          <input type="number" step="0.01" class="form-control" id="damageReduceMult" value="0.95">
-        </div>
-
-        <!-- 按鈕與結果 -->
-        <div class="col-12 text-center">
-          <button type="button" class="btn btn-primary px-5" onclick="calculateDamage()">計算傷害</button>
-        </div>
-        <div class="col-12 text-center mt-3">
-          <div id="result" class="alert alert-info fw-bold" role="alert" style="display:none;"></div>
-        </div>
-      </form>
-    </div>
+  <!-- 輸入資料表格（精簡展示） -->
+  <div class="table-responsive">
+    <table class="table table-dark table-bordered">
+      <tbody>
+        <tr>
+          <th>人物面板傷害</th>
+          <td>74,058</td>
+          <th>技能等級</th>
+          <td>75</td>
+        </tr>
+        <tr>
+          <th>技能面板傷害</th>
+          <td>75,555</td>
+          <th>基礎技能傷害</th>
+          <td>22,055</td>
+        </tr>
+        <tr>
+          <th>傷害%</th>
+          <td>100%</td>
+          <th>技能傷害%</th>
+          <td>100%</td>
+        </tr>
+        <tr>
+          <th>技傷%</th>
+          <td>0%</td>
+          <th>屬抗%</th>
+          <td>0%</td>
+        </tr>
+        <tr>
+          <th>屬傷%</th>
+          <td>10%</td>
+          <th>防禦減傷%</th>
+          <td>0%</td>
+        </tr>
+        <tr>
+          <th>對屬傷%</th>
+          <td>10%</td>
+          <th>主武器傷%</th>
+          <td>0%</td>
+        </tr>
+        <tr>
+          <th>等差</th>
+          <td colspan="3">自身 70 - 敵人 65</td>
+        </tr>
+        <tr>
+          <th>爆擊傷害%</th>
+          <td>130%</td>
+          <th>受到爆擊傷害降低%</th>
+          <td>0%</td>
+        </tr>
+        <tr>
+          <th>造傷%</th>
+          <td>10%</td>
+          <th>減傷%</th>
+          <td>0%</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
 
-<!-- JavaScript -->
-<script>
-  function calculateDamage() {
-    const baseSkill = parseFloat(document.getElementById('baseSkill').value);
-    const skillPercent = parseFloat(document.getElementById('skillPercent').value);
-    const panelDamage = parseFloat(document.getElementById('panelDamage').value);
-    const damagePercent = parseFloat(document.getElementById('damagePercent').value);
-    const techBonus = parseFloat(document.getElementById('techBonus').value);
-    const elementBonus = parseFloat(document.getElementById('elementBonus').value);
-    const targetElementBonus = parseFloat(document.getElementById('targetElementBonus').value);
-    const weaponBonus = parseFloat(document.getElementById('weaponBonus').value);
-    const levelDiff = parseFloat(document.getElementById('levelDiff').value);
-    const elementResist = parseFloat(document.getElementById('elementResist').value);
-    const defenseReduction = parseFloat(document.getElementById('defenseReduction').value);
-    const critDamage = parseFloat(document.getElementById('critDamage').value);
-    const critReduce = parseFloat(document.getElementById('critReduce').value);
-    const finalDamageMult = parseFloat(document.getElementById('finalDamageMult').value);
-    const damageReduceMult = parseFloat(document.getElementById('damageReduceMult').value);
-
-    const rawDamage =
-      baseSkill * (skillPercent / 100) +
-      panelDamage * (damagePercent / 100) +
-      techBonus +
-      elementBonus +
-      targetElementBonus +
-      weaponBonus +
-      (0.005 * levelDiff) -
-      elementResist -
-      defenseReduction;
-
-    const critMultiplier = (critDamage - critReduce) / 100;
-    const finalDamage = rawDamage * critMultiplier * finalDamageMult * damageReduceMult;
-
-    const resultDiv = document.getElementById('result');
-    resultDiv.innerText = '👉 實際傷害為：' + finalDamage.toFixed(2);
-    resultDiv.style.display = 'block';
-  }
-</script>
+<!-- 固定底部結果顯示 -->
+<div class="fixed-bottom-bar">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-md-6 mb-2 mb-md-0">
+        <h5 class="mb-1">🔥 實際傷害（非爆）</h5>
+        <div>平均：96,352｜最小：86,717｜最大：105,987</div>
+      </div>
+      <div class="col-md-6">
+        <h5 class="mb-1">💥 實際傷害（爆擊）</h5>
+        <div>平均：125,257｜最小：112,732｜最大：137,783</div>
+      </div>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
