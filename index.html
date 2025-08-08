@@ -30,78 +30,75 @@
   <form id="damageForm" class="row g-3">
     <div class="col-md-6">
       <label class="form-label">人物面板傷害</label>
-      <input type="number" class="form-control" id="panel" value="74058">
+      <input type="number" class="form-control calc" id="panel" value="74058">
     </div>
     <div class="col-md-6">
       <label class="form-label">技能等級</label>
-      <input type="number" class="form-control" id="skillLevel" value="75">
+      <input type="number" class="form-control calc" id="skillLevel" value="75">
     </div>
     <div class="col-md-6">
       <label class="form-label">技能面板傷害</label>
-      <input type="number" class="form-control" id="skillPanel" value="75555">
+      <input type="number" class="form-control calc" id="skillPanel" value="75555">
     </div>
     <div class="col-md-6">
       <label class="form-label">基礎技能傷害</label>
-      <input type="number" class="form-control" id="baseSkill" value="22055">
+      <input type="number" class="form-control calc" id="baseSkill" value="22055">
     </div>
     <div class="col-md-6">
       <label class="form-label">傷害%</label>
-      <input type="number" class="form-control" id="dmgPercent" value="100">
+      <input type="number" class="form-control calc" id="dmgPercent" value="100">
     </div>
     <div class="col-md-6">
       <label class="form-label">技能傷害%</label>
-      <input type="number" class="form-control" id="skillDmgPercent" value="100">
+      <input type="number" class="form-control calc" id="skillDmgPercent" value="100">
     </div>
     <div class="col-md-6">
       <label class="form-label">技傷%</label>
-      <input type="number" class="form-control" id="techBonus" value="0">
+      <input type="number" class="form-control calc" id="techBonus" value="0">
     </div>
     <div class="col-md-6">
       <label class="form-label">屬傷%</label>
-      <input type="number" class="form-control" id="elementBonus" value="10">
+      <input type="number" class="form-control calc" id="elementBonus" value="10">
     </div>
     <div class="col-md-6">
       <label class="form-label">對屬傷%</label>
-      <input type="number" class="form-control" id="targetElementBonus" value="10">
+      <input type="number" class="form-control calc" id="targetElementBonus" value="10">
     </div>
     <div class="col-md-6">
       <label class="form-label">主武器傷%</label>
-      <input type="number" class="form-control" id="weaponBonus" value="0">
+      <input type="number" class="form-control calc" id="weaponBonus" value="0">
     </div>
     <div class="col-md-6">
       <label class="form-label">自身等級</label>
-      <input type="number" class="form-control" id="playerLevel" value="70">
+      <input type="number" class="form-control calc" id="playerLevel" value="70">
     </div>
     <div class="col-md-6">
       <label class="form-label">敵人等級</label>
-      <input type="number" class="form-control" id="enemyLevel" value="65">
+      <input type="number" class="form-control calc" id="enemyLevel" value="65">
     </div>
     <div class="col-md-6">
       <label class="form-label">屬抗%</label>
-      <input type="number" class="form-control" id="elementResist" value="0">
+      <input type="number" class="form-control calc" id="elementResist" value="0">
     </div>
     <div class="col-md-6">
       <label class="form-label">防禦減傷%</label>
-      <input type="number" class="form-control" id="defenseReduction" value="0">
+      <input type="number" class="form-control calc" id="defenseReduction" value="0">
     </div>
     <div class="col-md-6">
       <label class="form-label">爆擊傷害%</label>
-      <input type="number" class="form-control" id="critDamage" value="130">
+      <input type="number" class="form-control calc" id="critDamage" value="130">
     </div>
     <div class="col-md-6">
       <label class="form-label">受到爆擊傷害降低%</label>
-      <input type="number" class="form-control" id="critReduce" value="0">
+      <input type="number" class="form-control calc" id="critReduce" value="0">
     </div>
     <div class="col-md-6">
       <label class="form-label">造傷%</label>
-      <input type="number" class="form-control" id="finalDamageMult" value="10">
+      <input type="number" class="form-control calc" id="finalDamageMult" value="10">
     </div>
     <div class="col-md-6">
       <label class="form-label">減傷%</label>
-      <input type="number" class="form-control" id="damageReduceMult" value="0">
-    </div>
-    <div class="col-12 text-center">
-      <button type="button" class="btn btn-primary" onclick="calculateDamage()">計算</button>
+      <input type="number" class="form-control calc" id="damageReduceMult" value="0">
     </div>
   </form>
 </div>
@@ -110,11 +107,18 @@
 <div class="fixed-bottom-bar text-center">
   <div>
     <strong>實際傷害（非爆）：</strong> <span id="nonCrit">-</span> ｜
-    <strong>實際傷害（爆擊）：</strong> <span id="crit">-</span>
+    <strong>爆擊：</strong> <span id="crit">-</span>
+  </div>
+  <div class="mt-1">
+    <small>最小值為 90%，最大值為 110%</small>
   </div>
 </div>
 
 <script>
+  function formatNumber(num) {
+    return num.toLocaleString('en-US');
+  }
+
   function calculateDamage() {
     const getVal = id => parseFloat(document.getElementById(id).value) || 0;
     const baseSkill = getVal('baseSkill');
@@ -138,9 +142,23 @@
     const dmgNonCrit = raw * finalMult * reduceMult;
     const dmgCrit = raw * critMult * finalMult * reduceMult;
 
-    document.getElementById('nonCrit').textContent = dmgNonCrit.toFixed(0);
-    document.getElementById('crit').textContent = dmgCrit.toFixed(0);
+    const showRange = (base) => {
+      const min = formatNumber(Math.floor(base * 0.9));
+      const max = formatNumber(Math.ceil(base * 1.1));
+      const avg = formatNumber(Math.round(base));
+      return `${avg}（${min} ~ ${max}）`;
+    };
+
+    document.getElementById('nonCrit').textContent = showRange(dmgNonCrit);
+    document.getElementById('crit').textContent = showRange(dmgCrit);
   }
+
+  // 即時觸發計算
+  document.querySelectorAll('.calc').forEach(input => {
+    input.addEventListener('input', calculateDamage);
+  });
+
+  window.addEventListener('DOMContentLoaded', calculateDamage);
 </script>
 
 </body>
