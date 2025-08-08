@@ -45,9 +45,7 @@
     <div class="row mb-3">
       <div class="col-md-6">
         <label for="skillLevel" class="form-label">技能等級</label>
-        <select id="skillLevel" class="form-select">
-			${[...Array(133).keys()].map(i => `<option value="${i + 48}">${i + 48}</option>`).join('')}
-  	    </select>
+        <select id="skillLevel" class="form-select"></select>
       </div>
       <div class="col-md-6">
         <label for="baseSkillDamage" class="form-label">基礎技能傷害</label>
@@ -95,9 +93,7 @@
 	<div class="row mb-3">
 	  <div class="col-md-6">
         <label for="levelDiff" class="form-label">等級差（自身 - 敵人）</label>
-        <select id="levelDiff" class="form-select">
-          ${[...Array(41).keys()].map(i => `<option value="${20 - i}">${20 - i}</option>`).join('')}
-        </select>
+        <select id="levelDiff" class="form-select"></select>
       </div>
 	  <div class="col-md-6">        
       </div>
@@ -156,9 +152,26 @@ let damageTable = {};
 fetch('skilldmg_table.json')
   .then(response => response.json())
   .then(data => {
-    damageTable = data;
+    damageTable = data;    
+	populateSelects();
     calculateDamage();
   });
+
+function populateSelects() {
+  const skillLevelSelect = document.getElementById('skillLevel');
+  for (let i = 48; i <= 180; i++) {
+    const option = document.createElement('option');
+    option.value = option.textContent = i;
+    skillLevelSelect.appendChild(option);
+  }
+
+  const levelDiffSelect = document.getElementById('levelDiff');
+  for (let i = 20; i >= -20; i--) {
+    const option = document.createElement('option');
+    option.value = option.textContent = i;
+    levelDiffSelect.appendChild(option);
+  }
+}
 
 const form = document.getElementById('damageForm');
 form.addEventListener('input', calculateDamage);
