@@ -44,7 +44,7 @@
 		</div>
       </div>
 	  <div class="col-md-6">
-        <label for="skillPanel" class="form-label">技能面板傷害</label>
+        <label for="skillPanel" class="form-label" data-bs-toggle="tooltip" data-bs-html="true" title='<img src="https://images.plurk.com/348GYIdbzC3mAna1lCZl0E.png" width="200">'>技能面板傷害 ❔</label>
 		<div class="input-group">
 			<input type="number" class="form-control" id="skillPanel" value="75555" >			
 			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('skillPanel')">清除</button>
@@ -53,7 +53,7 @@
     </div>
     <div class="row mb-3">
       <div class="col-md-6">
-        <label for="skillLevel" class="form-label">技能等級</label>
+        <label for="skillLevel" class="form-label" data-bs-toggle="tooltip" data-bs-html="true" title='<img src="https://images.plurk.com/3JqH1eg9xtnUMJIF04AbtD.png " width="150">'>技能等級 ❔</label>
         <select id="skillLevel" class="form-select"></select>
       </div>
       <div class="col-md-6">
@@ -63,7 +63,7 @@
     </div>
     <div class="row mb-3">
       <div class="col-md-6">
-        <label for="damagePercent" class="form-label">傷害%</label>
+        <label for="damagePercent" class="form-label" data-bs-toggle="tooltip" data-bs-html="true" title='<img src="https://images.plurk.com/7zoFAw5qH6fr1bRBh63PIO.png" width="150">'>傷害% ❔</label>
 		<div class="input-group">
 			<input type="number" class="form-control" id="damagePercent" value="100" placeholder="0">
 			<span class="input-group-text">%</span>
@@ -71,7 +71,7 @@
 		</div>
       </div>
       <div class="col-md-6">
-        <label for="skillDamagePercent" class="form-label">技能傷害%</label>
+        <label for="skillDamagePercent" class="form-label" data-bs-toggle="tooltip" data-bs-html="true" title='<img src="https://images.plurk.com/o19aE0jZTzbogOlJkAXm8.png" width="150">'>技能傷害% ❔</label>
 		<div class="input-group">
 			<input type="number" class="form-control" id="skillDamagePercent" value="100" placeholder="0">
 			<span class="input-group-text">%</span>
@@ -87,6 +87,7 @@
 		<div class="col-md-6">
 		</div>
 	</div>
+	<hr class="my-5">
     <div class="row mb-3">
       <div class="col-md-6">
         <label for="extraDamage" class="form-label">技傷% (提高XX技能傷害%)</label>
@@ -127,10 +128,6 @@
       <input class="form-check-input" type="checkbox" id="weaponElementMatch">
       <label class="form-check-label" for="weaponElementMatch">武器屬性同技能屬性 (同屬性傷害提高20%)</label>
     </div>
-    <div class="form-check mb-3">
-      <input class="form-check-input" type="checkbox" id="skillElementMatch">
-      <label class="form-check-label" for="skillElementMatch">技能屬性同敵人屬性 (受到同屬性傷害降低25%)</label>
-    </div>
 	<div class="row mb-3">
 	  <div class="col-md-6">
         <label for="levelDiff" class="form-label">等級差（自身 - 敵人）</label>
@@ -163,6 +160,7 @@
 		</div>
       </div>
     </div>
+	<hr class="my-5">
 	<div class="row mb-3">      
       <div class="col-md-6">
         <label for="resist" class="form-label">屬抗%</label>
@@ -199,6 +197,10 @@
 		</div>
 	  </div>
     </div>
+	<div class="form-check mb-3">
+      <input class="form-check-input" type="checkbox" id="skillElementMatch">
+      <label class="form-check-label" for="skillElementMatch">技能屬性同敵人屬性 (受到同屬性傷害降低25%)</label>
+    </div>
   </form>
 </div>
 
@@ -217,6 +219,7 @@
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 let damageTable = {};
 
@@ -227,6 +230,11 @@ fetch('skilldmg_table.json')
 	populateSelects();
     calculateDamage();
   });
+  
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})  
 
 function populateSelects() {
   const skillLevelSelect = document.getElementById('skillLevel');
