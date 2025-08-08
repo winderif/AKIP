@@ -34,12 +34,18 @@
   <form id="damageForm">
     <div class="row mb-3">
       <div class="col-md-6">
-        <label for="panelDamage" class="form-label">人物面板傷害</label>
-        <input type="number" class="form-control" id="panelDamage" value="74058">
+        <label for="panelDamage" class="form-label">人物面板傷害</label>        		
+		<div class="input-group">
+			<input type="number" class="form-control" id="panelDamage" value="74058">
+			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('panelDamage')">清除</button>
+		</div>
       </div>
 	  <div class="col-md-6">
         <label for="skillPanel" class="form-label">技能面板傷害</label>
-        <input type="number" class="form-control" id="skillPanel" value="75555">
+		<div class="input-group">
+			<input type="number" class="form-control" id="skillPanel" value="75555">
+			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('skillPanel')">清除</button>
+		</div>
       </div>      
     </div>
     <div class="row mb-3">
@@ -55,11 +61,17 @@
     <div class="row mb-3">
       <div class="col-md-6">
         <label for="damagePercent" class="form-label">傷害%</label>
-        <input type="number" class="form-control" id="damagePercent" value="100">
+		<div class="input-group">
+			<input type="number" class="form-control" id="damagePercent" value="100">
+			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('damagePercent')">清除</button>
+		</div>
       </div>
       <div class="col-md-6">
         <label for="skillDamagePercent" class="form-label">技能傷害%</label>
-        <input type="number" class="form-control" id="skillDamagePercent" value="100">
+		<div class="input-group">
+			<input type="number" class="form-control" id="skillDamagePercent" value="100">
+			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('skillDamagePercent')">清除</button>
+		</div>
       </div>
     </div>
 	<div class="row mb-3">
@@ -73,21 +85,33 @@
     <div class="row mb-3">
       <div class="col-md-6">
         <label for="extraDamage" class="form-label">技傷% (提高XX技能傷害%)</label>
-        <input type="number" class="form-control" id="extraDamage" value="0">
+		<div class="input-group">
+			<input type="number" class="form-control" id="extraDamage" value="0">
+			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('extraDamage')">清除</button>
+		</div>
       </div>
       <div class="col-md-6">
         <label for="elementDamage" class="form-label">屬傷% (XX屬性技能傷害提高%)</label>
-        <input type="number" class="form-control" id="elementDamage" value="10">
+		<div class="input-group">
+			<input type="number" class="form-control" id="elementDamage" value="10">
+			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('elementDamage')">清除</button>
+		</div>
       </div>
     </div>
     <div class="row mb-3">
       <div class="col-md-6">
         <label for="targetElementDamage" class="form-label">對屬傷% (對XX屬性的傷害提高%)</label>
-        <input type="number" class="form-control" id="targetElementDamage" value="10">
+		<div class="input-group">
+			<input type="number" class="form-control" id="targetElementDamage" value="10">
+			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('targetElementDamage')">清除</button>
+		</div>
       </div>
       <div class="col-md-6">
         <label for="mainWeaponDamage" class="form-label">主武器傷% (主武器的傷害提高%)</label>
-        <input type="number" class="form-control" id="mainWeaponDamage" value="0">
+		<div class="input-group">
+			<input type="number" class="form-control" id="mainWeaponDamage" value="0">
+			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('mainWeaponDamage')">清除</button>
+		</div>
       </div>
     </div>
 	<div class="form-check mb-3">
@@ -109,31 +133,49 @@
     <div class="row mb-3">      
       <div class="col-md-6">
         <label for="resist" class="form-label">屬抗%</label>
-        <input type="number" class="form-control" id="resist" value="0">
+		<div class="input-group">
+			<input type="number" class="form-control" id="resist" value="0">
+			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('resist')">清除</button>
+		</div>
       </div>
 	  <div class="col-md-6">
         <label for="defReduction" class="form-label">防禦減傷%</label>
-        <input type="number" class="form-control" id="defReduction" value="0">
+		<div class="input-group">
+			<input type="number" class="form-control" id="defReduction" value="0">
+			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('defReduction')">清除</button>
+		</div>
       </div>
     </div>
     <div class="row mb-3">      
       <div class="col-md-6">
         <label for="critDmg" class="form-label">爆擊傷害%</label>
-        <input type="number" class="form-control" id="critDmg" value="130">
+		<div class="input-group">
+			<input type="number" class="form-control" id="critDmg" value="130">
+			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('critDmg')">清除</button>
+		</div>
       </div>
 	  <div class="col-md-6">
         <label for="critResist" class="form-label">受到爆擊傷害降低%</label>
-        <input type="number" class="form-control" id="critResist" value="0">
+		<div class="input-group">
+			<input type="number" class="form-control" id="critResist" value="0">
+			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('critResist')">清除</button>
+		</div>
       </div>
     </div>
     <div class="row mb-3">      
       <div class="col-md-6">
         <label for="targetBonus" class="form-label">造傷% (對XX目標的傷害提高%)</label>
-        <input type="number" class="form-control" id="targetBonus" value="10">
+		<div class="input-group">
+			<input type="number" class="form-control" id="targetBonus" value="10">
+			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('targetBonus')">清除</button>
+		</div>
       </div>
 	  <div class="col-md-6">
 		<label for="finalReduce" class="form-label">減傷% (受到XX的傷害降低%)</label>
-  	    <input type="number" class="form-control" id="finalReduce" value="0">
+		<div class="input-group">
+			<input type="number" class="form-control" id="finalReduce" value="0">
+			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('finalReduce')">清除</button>
+		</div>
 	  </div>
     </div>
   </form>
@@ -179,6 +221,11 @@ function populateSelects() {
     option.value = option.textContent = i;
     levelDiffSelect.appendChild(option);
   }
+}
+
+function clearInput(id) {
+  document.getElementById(id).value = '';
+  calculateDamage();
 }
 
 const form = document.getElementById('damageForm');
