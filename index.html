@@ -39,14 +39,14 @@
       <div class="col-md-6">        
 		<label for="panelDamage" class="form-label">人物面板傷害</label>
 		<div class="input-group">
-			<input type="number" class="form-control" id="panelDamage" value="74058" maxlength="6">			
+			<input type="text" class="form-control" id="panelDamage" value="74058" pattern="\d*" maxlength="10">			
 			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('panelDamage')">清除</button>
 		</div>
       </div>
 	  <div class="col-md-6">
         <label for="skillPanel" class="form-label" data-bs-toggle="tooltip" data-bs-html="true" title='<img src="https://images.plurk.com/348GYIdbzC3mAna1lCZl0E.png" width="200">'>技能面板傷害 ❔</label>
 		<div class="input-group">
-			<input type="number" class="form-control" id="skillPanel" value="75555" >			
+			<input type="text" class="form-control" id="skillPanel" value="75555" pattern="\d*" maxlength="10">			
 			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('skillPanel')">清除</button>
 		</div>
       </div>      
@@ -58,14 +58,14 @@
       </div>
       <div class="col-md-6">
         <label for="baseSkillDamage" class="form-label">基礎技能傷害</label>
-        <input type="number" readonly class="form-control" id="baseSkillDamage" readonly>
+        <input type="text" readonly class="form-control" id="baseSkillDamage" readonly>
       </div>
     </div>
     <div class="row mb-3">
       <div class="col-md-6">
         <label for="damagePercent" class="form-label" data-bs-toggle="tooltip" data-bs-html="true" title='<img src="https://images.plurk.com/7zoFAw5qH6fr1bRBh63PIO.png" width="150">'>傷害% ❔</label>
 		<div class="input-group">
-			<input type="number" class="form-control" id="damagePercent" value="100" placeholder="0">
+			<input type="text" class="form-control" id="damagePercent" value="100" placeholder="0" pattern="\d*" maxlength="3">
 			<span class="input-group-text">%</span>
 			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('damagePercent')">清除</button>
 		</div>
@@ -73,7 +73,7 @@
       <div class="col-md-6">
         <label for="skillDamagePercent" class="form-label" data-bs-toggle="tooltip" data-bs-html="true" title='<img src="https://images.plurk.com/o19aE0jZTzbogOlJkAXm8.png" width="150">'>技能傷害% ❔</label>
 		<div class="input-group">
-			<input type="number" class="form-control" id="skillDamagePercent" value="100" placeholder="0">
+			<input type="text" class="form-control" id="skillDamagePercent" value="100" placeholder="0" pattern="\d*" maxlength="3">
 			<span class="input-group-text">%</span>
 			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('skillDamagePercent')">清除</button>
 		</div>
@@ -82,7 +82,7 @@
 	<div class="row mb-3">
 		<div class="col-md-6">
 			<label for="damageHide" class="form-label">實際表傷 (反算)</label>
-			<input type="number" readonly class="form-control" id="damageHide" value="">	
+			<input type="text" readonly class="form-control" id="damageHide" value="">	
 		</div>
 		<div class="col-md-6">
 		</div>
@@ -92,7 +92,7 @@
       <div class="col-md-6">
         <label for="extraDamage" class="form-label">技傷% (提高XX技能傷害%)</label>
 		<div class="input-group">
-			<input type="number" class="form-control" id="extraDamage" value="0" placeholder="0">
+			<input type="text" class="form-control" id="extraDamage" value="0" placeholder="0" pattern="\d*" maxlength="3">
 			<span class="input-group-text">%</span>
 			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('extraDamage')">清除</button>
 		</div>
@@ -100,7 +100,7 @@
       <div class="col-md-6">
         <label for="elementDamage" class="form-label">屬傷% (XX屬性技能傷害提高%)</label>
 		<div class="input-group">
-			<input type="number" class="form-control" id="elementDamage" value="10" placeholder="0">
+			<input type="text" class="form-control" id="elementDamage" value="10" placeholder="0" pattern="\d*" maxlength="3">
 			<span class="input-group-text">%</span>
 			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('elementDamage')">清除</button>
 		</div>
@@ -110,7 +110,7 @@
       <div class="col-md-6">
         <label for="targetElementDamage" class="form-label">對屬傷% (對XX屬性的傷害提高%)</label>
 		<div class="input-group">
-			<input type="number" class="form-control" id="targetElementDamage" value="10" placeholder="0">
+			<input type="text" class="form-control" id="targetElementDamage" value="10" placeholder="0" pattern="\d*" maxlength="3">
 			<span class="input-group-text">%</span>
 			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('targetElementDamage')">清除</button>
 		</div>
@@ -118,7 +118,7 @@
       <div class="col-md-6">
         <label for="mainWeaponDamage" class="form-label">主武器傷% (主武器的傷害提高%)</label>
 		<div class="input-group">
-			<input type="number" class="form-control" id="mainWeaponDamage" value="0" placeholder="0">
+			<input type="text" class="form-control" id="mainWeaponDamage" value="0" placeholder="0" pattern="\d*" maxlength="3">
 			<span class="input-group-text">%</span>
 			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('mainWeaponDamage')">清除</button>
 		</div>
@@ -136,7 +136,7 @@
 	  <div class="col-md-6">        
 		<label for="EleDmgTaken" class="form-label">扣屬抗% (受到XX屬性的傷害提高%)</label>
 		<div class="input-group">
-			<input type="number" class="form-control" id="EleDmgTaken" value="0" placeholder="0">
+			<input type="text" class="form-control" id="EleDmgTaken" value="0" placeholder="0" pattern="\d*" maxlength="3">
 			<span class="input-group-text">%</span>
 			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('EleDmgTaken')">清除</button>
 		</div>
@@ -146,7 +146,7 @@
       <div class="col-md-6">
         <label for="critDmg" class="form-label">爆擊傷害%</label>
 		<div class="input-group">
-			<input type="number" class="form-control" id="critDmg" value="130" placeholder="0">
+			<input type="text" class="form-control" id="critDmg" value="130" placeholder="0" pattern="\d*" maxlength="3">
 			<span class="input-group-text">%</span>
 			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('critDmg')">清除</button>
 		</div>
@@ -154,7 +154,7 @@
 	  <div class="col-md-6">
         <label for="targetBonus" class="form-label">造傷% (對XX目標的傷害提高%)</label>
 		<div class="input-group">
-			<input type="number" class="form-control" id="targetBonus" value="10" placeholder="0">
+			<input type="text" class="form-control" id="targetBonus" value="10" placeholder="0" pattern="\d*" maxlength="3">
 			<span class="input-group-text">%</span>
 			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('targetBonus')">清除</button>
 		</div>
@@ -165,7 +165,7 @@
       <div class="col-md-6">
         <label for="resist" class="form-label">屬抗%</label>
 		<div class="input-group">
-			<input type="number" class="form-control" id="resist" value="0" placeholder="0">
+			<input type="text" class="form-control" id="resist" value="0" placeholder="0" pattern="\d*" maxlength="3">
 			<span class="input-group-text">%</span>
 			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('resist')">清除</button>
 		</div>
@@ -173,7 +173,7 @@
 	  <div class="col-md-6">
         <label for="defReduction" class="form-label">防禦減傷%</label>
 		<div class="input-group">
-			<input type="number" class="form-control" id="defReduction" value="0" placeholder="0">
+			<input type="text" class="form-control" id="defReduction" value="0" placeholder="0" pattern="\d*" maxlength="3">
 			<span class="input-group-text">%</span>
 			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('defReduction')">清除</button>
 		</div>
@@ -183,7 +183,7 @@
       <div class="col-md-6">
         <label for="critResist" class="form-label">受到爆擊傷害降低%</label>
 		<div class="input-group">
-			<input type="number" class="form-control" id="critResist" value="0" placeholder="0">
+			<input type="text" class="form-control" id="critResist" value="0" placeholder="0" pattern="\d*" maxlength="3">
 			<span class="input-group-text">%</span>
 			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('critResist')">清除</button>
 		</div>
@@ -191,7 +191,7 @@
 	  <div class="col-md-6">
 		<label for="finalReduce" class="form-label">減傷% (受到XX的傷害降低%)</label>
 		<div class="input-group">
-			<input type="number" class="form-control" id="finalReduce" value="0" placeholder="0">
+			<input type="text" class="form-control" id="finalReduce" value="0" placeholder="0" pattern="\d*" maxlength="3">
 			<span class="input-group-text">%</span>
 			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('finalReduce')">清除</button>
 		</div>
@@ -229,6 +229,8 @@ fetch('skilldmg_table.json')
     damageTable = data;    
 	populateSelects();
     calculateDamage();
+	document.getElementById("skillLevel").value = "75";
+	document.getElementById("levelDiff").value = "5";
   });
   
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
