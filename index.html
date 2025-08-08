@@ -11,7 +11,7 @@
       color: #f1f1f1;
     }
     .fixed-bottom-bar {
-      position: fixed;
+      position: sticky;
       bottom: 0;
       left: 0;
       width: 100%;
@@ -82,6 +82,14 @@
         <input type="number" class="form-control" id="mainWeaponDamage" value="0">
       </div>
     </div>
+	<div class="form-check form-switch mb-3">
+      <input class="form-check-input" type="checkbox" id="weaponElementMatch">
+      <label class="form-check-label" for="weaponElementMatch">武器屬性同技能屬性</label>
+    </div>
+    <div class="form-check form-switch mb-4">
+      <input class="form-check-input" type="checkbox" id="skillElementMatch">
+      <label class="form-check-label" for="skillElementMatch">技能屬性同敵人屬性</label>
+    </div>
     <div class="row mb-3">
       <div class="col-md-6">
         <label for="levelDiff" class="form-label">等級差（自身 - 敵人）</label>
@@ -149,6 +157,7 @@ form.addEventListener('input', calculateDamage);
 
 function calculateDamage() {
   const get = id => parseFloat(document.getElementById(id).value) || 0;
+  const getCheckbox = id => document.getElementById(id).checked;
   const setText = (id, value) => document.getElementById(id).textContent = value;
 
   const skillLevel = get('skillLevel');
@@ -163,6 +172,8 @@ function calculateDamage() {
   const elem = get('elementDamage') / 100;
   const elem2 = get('targetElementDamage') / 100;
   const weapon = get('mainWeaponDamage') / 100;
+  const weleMatch = getCheckbox('weaponElementMatch') ? 20 : 0;
+  const resistMatch = getCheckbox('skillElementMatch') ? 25 : 0;
   const lvDiff = get('levelDiff') * 0.005;
   const resist = get('resist') / 100;
   const def = get('defReduction') / 100;
@@ -170,7 +181,7 @@ function calculateDamage() {
   const bonus = 1 + get('targetBonus') / 100;
   const reduce = 1 - get('finalReduce') / 100;
 
-  let raw = (base * skillPct + panel * dmgPct + base * (tech + elem + elem2 + weapon) + base * lvDiff - base * resist - base * def);
+  let raw = (base * skillPct + base * (tech + elem + elem2 + weapon + weleMatch + base * lvDiff - base * resist - base * def - resistMatch));
   let nonCritAvg = raw * bonus * reduce;
   let critAvg = raw * crit * bonus * reduce;
 
