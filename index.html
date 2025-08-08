@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>遊戲傷害計算器</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   <style>
     body {
       background-color: #121212;
@@ -212,20 +213,104 @@
       <label class="form-check-label" for="skillElementMatch">技能屬性同敵人屬性 (受到同屬性傷害降低25%)</label>
     </div>
   </form>
+  <form id="newDamageForm">
+	<hr class="my-5">
+	<div class="row mb-3">	  
+      <div class="col-md-6">        
+		<label for="newPanelDmg" class="form-label">人物面板傷害</label>
+		<div class="input-group">
+			<input type="text" class="form-control" id="newPanelDmg" value="" pattern="\d*" maxlength="10">
+			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('newPanelDmg')">清除</button>
+		</div>
+      </div>
+	  <div class="col-md-6">
+        <label for="newSkillDmg" class="form-label">技能面板傷害</label>
+		<div class="input-group">
+			<input type="text" class="form-control" id="newSkillDmg" value="" pattern="\d*" maxlength="10">
+			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('newSkillDmg')">清除</button>
+		</div>
+      </div>      
+    </div>
+	<div class="row mb-3">
+      <div class="col-md-6">
+        <label for="newAddSkillDmg" class="form-label">技傷% (提高XX技能傷害%)</label>
+		<div class="input-group">
+			<input type="text" class="form-control" id="newAddSkillDmg" value="" placeholder="0" pattern="\d*" maxlength="3">
+			<span class="input-group-text">%</span>
+			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('newAddSkillDmg')">清除</button>
+		</div>
+      </div>
+      <div class="col-md-6">
+        <label for="newElemDmg" class="form-label">屬傷% (XX屬性技能傷害提高%)</label>
+		<div class="input-group">
+			<input type="text" class="form-control" id="newElemDmg" value="" placeholder="0" pattern="\d*" maxlength="3">
+			<span class="input-group-text">%</span>
+			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('newElemDmg')">清除</button>
+		</div>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="newTargetElemDmg" class="form-label">對屬傷% (對XX屬性的傷害提高%)</label>
+		<div class="input-group">
+			<input type="text" class="form-control" id="newTargetElemDmg" value="" placeholder="0" pattern="\d*" maxlength="3">
+			<span class="input-group-text">%</span>
+			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('newTargetElemDmg')">清除</button>
+		</div>
+      </div>
+      <div class="col-md-6">
+        <label for="newWeaponDmg" class="form-label">主武器傷% (主武器的傷害提高%)</label>
+		<div class="input-group">
+			<input type="text" class="form-control" id="newWeaponDmg" value="" placeholder="0" pattern="\d*" maxlength="3">
+			<span class="input-group-text">%</span>
+			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('newWeaponDmg')">清除</button>
+		</div>
+      </div>
+    </div>
+	<div class="row mb-3">      
+      <div class="col-md-6">
+        <label for="newCritDmg" class="form-label">爆擊傷害%</label>
+		<div class="input-group">
+			<input type="text" class="form-control" id="newCritDmg" value="0" placeholder="0" pattern="\d*" maxlength="3">
+			<span class="input-group-text">%</span>
+			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('newCritDmg')">清除</button>
+		</div>
+      </div>
+	  <div class="col-md-6">
+        <label for="newDealDmg" class="form-label">造傷% (對XX目標的傷害提高%)</label>
+		<div class="input-group">
+			<input type="text" class="form-control" id="newDealDmg" value="0" placeholder="0" pattern="\d*" maxlength="3">
+			<span class="input-group-text">%</span>
+			<button class="btn btn-outline-secondary" type="button" onclick="clearInput('newDealDmg')">清除</button>
+		</div>
+      </div>
+    </div>
+  </form>
 </div>
 
 <div class="fixed-bottom-bar">
   <div class="container">
     <div class="row text-center">
-      <div class="col-md-6 mb-2 mb-md-0">
-        <h5 class="mb-1">🔥 實際傷害（非爆）</h5>
-        <div id="nonCritResult">平均：0（0 ~ 0）</div>
-      </div>
-      <div class="col-md-6">
-        <h5 class="mb-1">💥 實際傷害（爆擊）</h5>
-        <div id="critResult">平均：0（0 ~ 0）</div>
-      </div>
+	  <div class="col-3">		
+	  </div>      
+      <div class="col-6 text-center">		
+		<div class="row">	      
+          <div class="col-12" id="critResult">0</div>
+		  <div class="col-12" id="critMinMax">(0 ~ 0)</div>
+		  <div class="col-12" id="newBonus"></div>
+		</div>      
+      </div>      
+	  <div class="col-3 text-end">
+        <button class="btn btn-outline-light btn-sm" onclick="copyTo()">
+          <i class="bi bi-clipboard"></i>
+        </button>
+      </div>   
     </div>
+	<div class="row text-center">
+	  <div class="col-12 text-center">		
+        <div id="AddDmgResult"></div>
+      </div>      
+	</div>
   </div>
 </div>
 
@@ -307,10 +392,102 @@ function calculateDamage() {
   let nonCritAvg = raw * bonus * reduce;
   let critAvg = raw * crit * bonus * reduce;
 
-  const fmt = n => Math.round(n).toLocaleString();
-  setText('nonCritResult', `平均：${fmt(nonCritAvg)}（${fmt(nonCritAvg * 0.9)} ~ ${fmt(nonCritAvg * 1.1)})`);
-  setText('critResult', `平均：${fmt(critAvg)}（${fmt(critAvg * 0.9)} ~ ${fmt(critAvg * 1.1)})`);
+  const fmt = n => Math.round(n).toLocaleString();  
+  //setText('critResult', `平均：${fmt(critAvg)}（${fmt(critAvg * 0.9)} ~ ${fmt(critAvg * 1.1)})`);
+  setText('critResult',fmt(critAvg));
+  setText('critMinMax', `(${fmt(critAvg * 0.9)} ~ ${fmt(critAvg * 1.1)})`);
 }
+
+function copyTo() {
+  const get = id => parseFloat(document.getElementById(id).value) || 0;
+  const panel = get('panelDamage');
+  const skillPanel = get('skillPanel');  
+  const tech = get('extraDamage');
+  const elem = get('elementDamage');
+  const elem2 = get('targetElementDamage');
+  const weapon = get('mainWeaponDamage');
+  const crit = get('critDmg');
+  const bonus = get('targetBonus');
+  
+  document.getElementById('newPanelDmg').value = panel;
+  document.getElementById('newSkillDmg').value = skillPanel;
+  document.getElementById('newAddSkillDmg').value = tech;
+  document.getElementById('newElemDmg').value = elem;
+  document.getElementById('newTargetElemDmg').value = elem2;
+  document.getElementById('newWeaponDmg').value = weapon;
+  document.getElementById('newCritDmg').value = crit;
+  document.getElementById('newDealDmg').value = bonus;
+}
+
+const form2 = document.getElementById('newDamageForm');
+form2.addEventListener('input', calculateAddDmg);
+
+function calculateAddDmg() {
+  const get = id => parseFloat(document.getElementById(id).value) || 0;
+  const getCheckbox = id => document.getElementById(id).checked;
+  const setText = (id, value) => document.getElementById(id).textContent = value;
+  
+  const skillLevel = get('skillLevel');
+  document.getElementById('baseSkillDamage').value = damageTable[skillLevel] || 0;  
+
+  const base = damageTable[skillLevel] || 0;
+  const panel = get('panelDamage');
+  const skillPanel = get('skillPanel');
+  const dmgPct = get('damagePercent') / 100;
+  const skillPct = get('skillDamagePercent') / 100;
+  const tech = get('extraDamage') / 100;
+  const elem = get('elementDamage') / 100;
+  const elem2 = get('targetElementDamage') / 100;
+  const weapon = get('mainWeaponDamage') / 100;
+  const weleMatch = getCheckbox('weaponElementMatch') ? 0.2 : 0;
+  const resistMatch = getCheckbox('skillElementMatch') ? 0.25 : 0;
+  const lvDiff = get('levelDiff') * 0.005;
+  const resist = get('resist') / 100;
+  const def = get('defReduction') / 100;
+  const crit = (get('critDmg') - get('critResist')) / 100;
+  const bonus = 1 + get('targetBonus') / 100;
+  const reduce = 1 - get('finalReduce') / 100;
+  const EleDmgTaken = get('EleDmgTaken') / 100;
+  
+  document.getElementById('damageHide').value = Math.round((skillPanel - (base * skillPct)) / dmgPct, 0);
+  let damageHide = get('damageHide');
+  
+  const newPanelDmg = get('newPanelDmg');
+  const newSkillDmg = get('newSkillDmg');  
+  const newAddSkillDmg = get('newAddSkillDmg') / 100;
+  const newElemDmg = get('newElemDmg') / 100;
+  const newTargetElemDmg = get('newTargetElemDmg') / 100;
+  const newWeaponDmg = get('newWeaponDmg') / 100;
+  const newCritDmg = (get('newCritDmg') - get('critResist')) / 100;
+  const newDealDmg = 1 + get('newDealDmg') / 100;  
+  
+  let newDamageHide = Math.round((newSkillDmg - (base * skillPct)) / dmgPct, 0);
+
+  let raw = (base * skillPct + damageHide * (dmgPct + tech + elem + elem2 + weapon + weleMatch + EleDmgTaken + lvDiff - resist - def - resistMatch));  
+  let critAvg = raw * crit * bonus * reduce;
+  
+  let newraw = (base * skillPct + newDamageHide * (dmgPct + newAddSkillDmg + newElemDmg + newTargetElemDmg + newWeaponDmg + weleMatch + EleDmgTaken + lvDiff - resist - def - resistMatch));  
+  let newcritAvg = newraw * newCritDmg * newDealDmg * reduce;  
+  
+  const label = document.getElementById('newBonus');
+  let num1 = newcritAvg - critAvg;
+  let num2 = critAvg;
+  if (isNaN(num1) || isNaN(num2) || num2 === 0) {
+	label.textContent = '無效';
+	label.className = 'text-danger fw-bold';
+	return;
+  }  
+  const percent = ((num1 / num2) * 100).toFixed(2); // 保留兩位小數
+  label.textContent = (percent >= 0 ? "+" : "")+`${percent}%`;
+  
+  if (percent >= 0) {
+	label.className = 'text-success fw-bold'; // 綠色
+  } else {
+	label.className = 'text-danger fw-bold'; // 紅色
+  }
+}
+
+
 </script>
 
 </body>
