@@ -62,6 +62,14 @@
         <input type="number" class="form-control" id="skillDamagePercent" value="100">
       </div>
     </div>
+	<div class="row mb-3">
+		<div class="col-md-6">
+			<label for="damageHide" class="form-label">隱藏表傷</label>
+			<input type="number" readonly class="form-control" id="damageHide" value="">	
+		</div>
+		<div class="col-md-6">
+		</div>
+	</div>
     <div class="row mb-3">
       <div class="col-md-6">
         <label for="extraDamage" class="form-label">技傷% (提高XX技能傷害%)</label>
@@ -180,9 +188,9 @@ function calculateDamage() {
   const get = id => parseFloat(document.getElementById(id).value) || 0;
   const getCheckbox = id => document.getElementById(id).checked;
   const setText = (id, value) => document.getElementById(id).textContent = value;
-
+   
   const skillLevel = get('skillLevel');
-  document.getElementById('baseSkillDamage').value = damageTable[skillLevel] || 0;
+  document.getElementById('baseSkillDamage').value = damageTable[skillLevel] || 0;  
 
   const base = damageTable[skillLevel] || 0;
   const panel = get('panelDamage');
@@ -201,8 +209,11 @@ function calculateDamage() {
   const crit = (get('critDmg') - get('critResist')) / 100;
   const bonus = 1 + get('targetBonus') / 100;
   const reduce = 1 - get('finalReduce') / 100;
+  
+  document.getElementById('damageHide').value = (skillPanel - (base * skillPct)) / dmgPct;
+  let damageHide = get('damageHide');
 
-  let raw = (base * skillPct + base * (tech + elem + elem2 + weapon + weleMatch + base * lvDiff - base * resist - base * def - resistMatch));
+  let raw = (base * skillPct + damageHide * (dmgPct + tech + elem + elem2 + weapon + weleMatch + lvDiff - resist - def - resistMatch));
   let nonCritAvg = raw * bonus * reduce;
   let critAvg = raw * crit * bonus * reduce;
 
