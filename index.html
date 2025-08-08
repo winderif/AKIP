@@ -37,19 +37,21 @@
         <label for="panelDamage" class="form-label">人物面板傷害</label>
         <input type="number" class="form-control" id="panelDamage" value="74058">
       </div>
-      <div class="col-md-6">
-        <label for="skillLevel" class="form-label">技能等級</label>
-        <input type="number" class="form-control" id="skillLevel" value="75">
-      </div>
+	  <div class="col-md-6">
+        <label for="skillPanel" class="form-label">技能面板傷害</label>
+        <input type="number" class="form-control" id="skillPanel" value="75555">
+      </div>      
     </div>
     <div class="row mb-3">
       <div class="col-md-6">
-        <label for="skillPanel" class="form-label">技能面板傷害</label>
-        <input type="number" class="form-control" id="skillPanel" value="75555">
+        <label for="skillLevel" class="form-label">技能等級</label>
+        <select id="skillLevel" class="form-select">
+			${[...Array(133).keys()].map(i => `<option value="${i + 48}">${i + 48}</option>`).join('')}
+  	    </select>
       </div>
       <div class="col-md-6">
         <label for="baseSkillDamage" class="form-label">基礎技能傷害</label>
-        <input type="number" class="form-control" id="baseSkillDamage" readonly>
+        <input type="number" readonly class="form-control" id="baseSkillDamage" readonly>
       </div>
     </div>
     <div class="row mb-3">
@@ -64,65 +66,71 @@
     </div>
     <div class="row mb-3">
       <div class="col-md-6">
-        <label for="extraDamage" class="form-label">技傷%</label>
+        <label for="extraDamage" class="form-label">技傷% (提高XX技能傷害%)</label>
         <input type="number" class="form-control" id="extraDamage" value="0">
       </div>
       <div class="col-md-6">
-        <label for="elementDamage" class="form-label">屬傷%</label>
+        <label for="elementDamage" class="form-label">屬傷% (XX屬性技能傷害提高%)</label>
         <input type="number" class="form-control" id="elementDamage" value="10">
       </div>
     </div>
     <div class="row mb-3">
       <div class="col-md-6">
-        <label for="targetElementDamage" class="form-label">對屬傷%</label>
+        <label for="targetElementDamage" class="form-label">對屬傷% (對XX屬性的傷害提高%)</label>
         <input type="number" class="form-control" id="targetElementDamage" value="10">
       </div>
       <div class="col-md-6">
-        <label for="mainWeaponDamage" class="form-label">主武器傷%</label>
+        <label for="mainWeaponDamage" class="form-label">主武器傷% (主武器的傷害提高%)</label>
         <input type="number" class="form-control" id="mainWeaponDamage" value="0">
       </div>
     </div>
-	<div class="form-check form-switch mb-3">
+	<div class="form-check mb-3">
       <input class="form-check-input" type="checkbox" id="weaponElementMatch">
       <label class="form-check-label" for="weaponElementMatch">武器屬性同技能屬性</label>
     </div>
-    <div class="form-check form-switch mb-4">
+    <div class="form-check mb-3">
       <input class="form-check-input" type="checkbox" id="skillElementMatch">
       <label class="form-check-label" for="skillElementMatch">技能屬性同敵人屬性</label>
     </div>
-    <div class="row mb-3">
-      <div class="col-md-6">
+	<div class="row mb-3">
+	  <div class="col-md-6">
         <label for="levelDiff" class="form-label">等級差（自身 - 敵人）</label>
-        <input type="number" class="form-control" id="levelDiff" value="5">
+        <select id="levelDiff" class="form-select">
+          ${[...Array(41).keys()].map(i => `<option value="${20 - i}">${20 - i}</option>`).join('')}
+        </select>
       </div>
+	  <div class="col-md-6">        
+      </div>
+	</div>
+    <div class="row mb-3">      
       <div class="col-md-6">
         <label for="resist" class="form-label">屬抗%</label>
         <input type="number" class="form-control" id="resist" value="0">
       </div>
-    </div>
-    <div class="row mb-3">
-      <div class="col-md-6">
+	  <div class="col-md-6">
         <label for="defReduction" class="form-label">防禦減傷%</label>
         <input type="number" class="form-control" id="defReduction" value="0">
       </div>
+    </div>
+    <div class="row mb-3">      
       <div class="col-md-6">
         <label for="critDmg" class="form-label">爆擊傷害%</label>
         <input type="number" class="form-control" id="critDmg" value="130">
       </div>
-    </div>
-    <div class="row mb-3">
-      <div class="col-md-6">
-        <label for="critResist" class="form-label">爆擊傷害減少%</label>
+	  <div class="col-md-6">
+        <label for="critResist" class="form-label">受到爆擊傷害降低%</label>
         <input type="number" class="form-control" id="critResist" value="0">
       </div>
+    </div>
+    <div class="row mb-3">      
       <div class="col-md-6">
-        <label for="targetBonus" class="form-label">造傷%</label>
+        <label for="targetBonus" class="form-label">造傷% (對XX目標的傷害提高%)</label>
         <input type="number" class="form-control" id="targetBonus" value="10">
       </div>
-    </div>
-    <div class="mb-3">
-      <label for="finalReduce" class="form-label">受到XX的傷害降低 (減傷)%</label>
-      <input type="number" class="form-control" id="finalReduce" value="0">
+	  <div class="col-md-6">
+		<label for="finalReduce" class="form-label">減傷% (受到XX的傷害降低%)</label>
+  	    <input type="number" class="form-control" id="finalReduce" value="0">
+	  </div>
     </div>
   </form>
 </div>
@@ -172,8 +180,8 @@ function calculateDamage() {
   const elem = get('elementDamage') / 100;
   const elem2 = get('targetElementDamage') / 100;
   const weapon = get('mainWeaponDamage') / 100;
-  const weleMatch = getCheckbox('weaponElementMatch') ? 20 : 0;
-  const resistMatch = getCheckbox('skillElementMatch') ? 25 : 0;
+  const weleMatch = getCheckbox('weaponElementMatch') ? 0.2 : 0;
+  const resistMatch = getCheckbox('skillElementMatch') ? 0.25 : 0;
   const lvDiff = get('levelDiff') * 0.005;
   const resist = get('resist') / 100;
   const def = get('defReduction') / 100;
