@@ -511,7 +511,7 @@ body {
 <script>
 let damageTable = {};
 let bossTable = {};
-populateSelects();
+//populateSelects();
 
 Promise.all([
 		fetch('skilldmg_table.json').then(res => res.json()),
@@ -519,7 +519,7 @@ Promise.all([
 	]).then(([damageData, bossData]) => {
 		damageTable = damageData;
 		bossTable = bossData;
-		//populateSelects();
+		populateSelects();
 				
 		document.getElementById("skillLevel").value = "75";
 		document.getElementById("levelDiff").value = "5";
