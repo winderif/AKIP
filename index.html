@@ -254,9 +254,9 @@ body {
                 <hr class="my-5">
 				<div class="row mb-3">
 					<div class="col-md-12">
-						<label for="bossSelect" class="form-label">選擇BOSS或副本</label>
+						<label for="bossSelect" class="form-label">手動選擇BOSS</label>
 						<select id="bossSelect" class="form-select">
-							<option value="">無指定</option>
+							<option value="">測試用屬性石柱</option>
 						</select>
 					</div>	
 				</div>
@@ -358,7 +358,7 @@ body {
                 <hr class="my-5">
 				<div class="row mb-3">
 					<div class="col-md-12">
-						<p class="h3 text-center bg-black py-2">更新後機體</p>
+						<p class="h3 text-center bg-black py-2">預計更新的機體</p>
 					</div>
 				</div>
                 <div class="row mb-3">
@@ -728,7 +728,7 @@ function calculateAddDmg() {
 	return;
   }  
   const percent = ((num1 / num2) * 100).toFixed(2); // 保留兩位小數
-  label.textContent = (percent >= 0 ? "+" : "")+`${percent}%`;
+  label.textContent = (percent >= 0 ? "總傷害+" : "總傷害")+`${percent}%`;
   
   if (percent >= 0) {
 	label.className = 'text-success fw-bold'; // 綠色
