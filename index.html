@@ -545,7 +545,7 @@ function populateSelects() {
   Object.entries(bossTable).forEach(([key, data]) => {
     const option = document.createElement('option');
     option.value = key;
-    option.textContent = data.name;
+    option.textContent = data.bname;
     bossSelect.appendChild(option);
   });
 }
@@ -555,14 +555,14 @@ document.getElementById('bossSelect').addEventListener('change', function() {
 	const selectedBoss = this.value;
 	if (selectedBoss && bossTable[selectedBoss]) {
 		const data = bossTable[selectedBoss];
-		document.getElementById('finalReduce').value = data.finalReduce;
-		document.getElementById('defReduction').value = data.defReduction;
-		document.getElementById('resist').value = data.resist;
+		document.getElementById('dmgDealtDun').value = data.dmg_dealt;
+		document.getElementById('finalReduce').value = data.dmg_taken * -1;		
+		document.getElementById('critResist').value = data.crit_dmg_taken * -1;		
 	} 
 	else {
+		document.getElementById('dmgDealtDun').value = '';
 		document.getElementById('finalReduce').value = '';
-		document.getElementById('defReduction').value = '';
-		document.getElementById('resist').value = '';
+		document.getElementById('critResist').value = '';
 	}
 	calculateDamage();
 	calculateAddDmg();
