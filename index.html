@@ -630,6 +630,8 @@ function calculateDamage() {
   //setText('critResult', `平均：${fmt(critAvg)}（${fmt(critAvg * 0.9)} ~ ${fmt(critAvg * 1.1)})`);
   setText('critResult',fmt(critAvg));
   setText('critMinMax', `(${fmt(critAvg * 0.9)} ~ ${fmt(critAvg * 1.1)})`);   
+  
+  calculateAddDmg();
 }
 
 function copyTo() {
