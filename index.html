@@ -258,16 +258,16 @@ body {
 				</div>
                 <div class="row mb-3">
                     <div class="col-md-6">
-                        <label for="resist" class="form-label">
+                        <label for="elemResist" class="form-label">
                             屬抗%
                         </label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="resist" value="" placeholder="0"
+                            <input type="text" class="form-control" id="elemResist" value="" placeholder="0"
                             pattern="\d*" maxlength="3">
                             <span class="input-group-text">
                                 %
                             </span>
-                            <button class="btn btn-outline-secondary" type="button" onclick="clearInput('resist')">
+                            <button class="btn btn-outline-secondary" type="button" onclick="clearInput('elemResist')">
                                 清空
                             </button>
                         </div>
@@ -558,11 +558,15 @@ document.getElementById('bossSelect').addEventListener('change', function() {
 		document.getElementById('dmgDealtDun').value = data.dmg_dealt;
 		document.getElementById('finalReduce').value = data.dmg_taken * -1;		
 		document.getElementById('critResist').value = data.crit_dmg_taken * -1;		
+		document.getElementById('defReduction').value = data.def;
+		document.getElementById('elemResist').value = data.elem_dmg_taken * -1;
 	} 
 	else {
 		document.getElementById('dmgDealtDun').value = '';
 		document.getElementById('finalReduce').value = '';
 		document.getElementById('critResist').value = '';
+		document.getElementById('defReduction').value = '';
+		document.getElementById('elemResist').value = '';
 	}
 	calculateDamage();
 	calculateAddDmg();
@@ -597,7 +601,7 @@ function calculateDamage() {
   const weleMatch = (getCheckbox('weaponElementMatch') ? 20 : 0) / 100;
   const resistMatch = (getCheckbox('skillElementMatch') ? 25 : 0) / 100;
   const lvDiff = get('levelDiff') * 0.005;
-  const resist = get('resist') / 100;
+  const elemResist = get('elemResist') / 100;
   const def = get('defReduction') / 100;
   const crit = (get('critDmg') - get('critResist')) / 100;
   const dmgDealt = get('dmgDealt') / 100;
@@ -608,7 +612,7 @@ function calculateDamage() {
   document.getElementById('damageHide').value = Math.round((skillPanel - (base * skillPct)) / dmgPct, 0);
   let damageHide = get('damageHide');
 
-  let raw = (base * skillPct + damageHide * (dmgPct + tech + elem + elem2 + weapon + weleMatch + EleDmgTaken + lvDiff - resist - def - resistMatch));
+  let raw = (base * skillPct + damageHide * (dmgPct + tech + elem + elem2 + weapon + weleMatch + EleDmgTaken + lvDiff - elemResist - def - resistMatch));
   let nonCritAvg = raw * (1 + dmgDealt - dmgDealtDun) * reduce;
   let critAvg = raw * crit * (1 + dmgDealt - dmgDealtDun) * reduce;
 
@@ -641,7 +645,9 @@ function copyTo() {
   document.getElementById('newCritDmg').value = crit;
   document.getElementById('newDealDmg').value = dmgDealt;
   
-  document.getElementById('newSkillDmg').scrollIntoView({ behavior: 'smooth' });
+  calculateAddDmg();
+  
+  document.getElementById('newSkillDmg').scrollIntoView({ behavior: 'smooth' });   
 }
 
 const form2 = document.getElementById('newDamageForm');
@@ -666,7 +672,7 @@ function calculateAddDmg() {
   const weleMatch = getCheckbox('weaponElementMatch') ? 0.2 : 0;
   const resistMatch = getCheckbox('skillElementMatch') ? 0.25 : 0;
   const lvDiff = get('levelDiff') * 0.005;
-  const resist = get('resist') / 100;
+  const elemResist = get('elemResist') / 100;
   const def = get('defReduction') / 100;
   const crit = (get('critDmg') - get('critResist')) / 100;
   const dmgDealt = get('dmgDealt') / 100;
@@ -689,10 +695,10 @@ function calculateAddDmg() {
   document.getElementById('newPanelDmg').value = Math.round((newSkillDmg - (base * skillPct)) / dmgPct, 0);
   let newDamageHide = get('newPanelDmg');
 
-  let raw = (base * skillPct + damageHide * (dmgPct + tech + elem + elem2 + weapon + weleMatch + EleDmgTaken + lvDiff - resist - def - resistMatch));  
+  let raw = (base * skillPct + damageHide * (dmgPct + tech + elem + elem2 + weapon + weleMatch + EleDmgTaken + lvDiff - elemResist - def - resistMatch));  
   let critAvg = raw * crit * (1 + dmgDealt - dmgDealtDun) * reduce;
   
-  let newraw = (base * skillPct + newDamageHide * (dmgPct + newAddSkillDmg + newElemDmg + newTargetElemDmg + newWeaponDmg + weleMatch + EleDmgTaken + lvDiff - resist - def - resistMatch));  
+  let newraw = (base * skillPct + newDamageHide * (dmgPct + newAddSkillDmg + newElemDmg + newTargetElemDmg + newWeaponDmg + weleMatch + EleDmgTaken + lvDiff - elemResist - def - resistMatch));  
   let newcritAvg = newraw * newCritDmg * (1 + newDealDmg - dmgDealtDun) * reduce;  
   
   const label = document.getElementById('newBonus');
