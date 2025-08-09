@@ -490,7 +490,7 @@ let bossTable = {};
 populateSelects();
 
 Promise.all([
-		fetch('damage_table.json').then(res => res.json()),
+		fetch('skilldmg_table.json').then(res => res.json()),
 		fetch('boss_data.json').then(res => res.json())
 	]).then(([damageData, bossData]) => {
 		damageTable = damageData;
