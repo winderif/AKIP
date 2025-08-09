@@ -1,0 +1,5 @@
+{
+  "boss1": { "name": "烈焰魔龍", "finalReduce": 10, "defReduction": 5, "resist": 20 },
+  "boss2": { "name": "寒冰巨人", "finalReduce": 15, "defReduction": 8, "resist": 10 },
+  "boss3": { "name": "雷霆領主", "finalReduce": 5, "defReduction": 3, "resist": 5 }
+}

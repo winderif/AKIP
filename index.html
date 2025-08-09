@@ -248,6 +248,14 @@ body {
                     </div>
                 </div>
                 <hr class="my-5">
+				<div class="row mb-3">
+					<div class="col-md-12">
+						<label for="bossSelect" class="form-label">選擇BOSS或副本</label>
+						<select id="bossSelect" class="form-select">
+							<option value="">無指定</option>
+						</select>
+					</div>	
+				</div>
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="resist" class="form-label">
@@ -321,6 +329,11 @@ body {
             </form>
             <form id="newDamageForm">
                 <hr class="my-5">
+				<div class="row mb-3">
+					<div class="col-md-12">
+						<p class="h3 text-center">更新後機體</p>
+					</div>
+				</div>
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="newSkillDmg" class="form-label">
@@ -457,9 +470,8 @@ body {
                         </div>
                     </div>
                     <div class="col-3 text-end">
-                        <button class="btn btn-outline-light btn-sm" onclick="copyTo()">
-                            <i class="bi bi-copy">
-                            </i>
+                        <button class="btn btn-outline-light btn-sm" onclick="copyTo()" data-bs-toggle="tooltip" data-bs-html="true" title="複製數據到新機體">
+                            <i class="bi bi-copy"></i>
                         </button>
                     </div>
                 </div>
@@ -471,20 +483,24 @@ body {
                 </div>
             </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-        <script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
 let damageTable = {};
+let bossTable = {};
 populateSelects();
 
-fetch('skilldmg_table.json')
-  .then(response => response.json())
-  .then(data => {
-    damageTable = data;    
-	populateSelects();
-    calculateDamage();
-	document.getElementById("skillLevel").value = "75";
-	document.getElementById("levelDiff").value = "5";
-  });
+Promise.all([
+		fetch('damage_table.json').then(res => res.json()),
+		fetch('boss_data.json').then(res => res.json())
+	]).then(([damageData, bossData]) => {
+		damageTable = damageData;
+		bossTable = bossData;
+		populateSelects();
+		
+		calculateDamage();
+		document.getElementById("skillLevel").value = "75";
+		document.getElementById("levelDiff").value = "5";
+});
   
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
 var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
@@ -505,12 +521,38 @@ function populateSelects() {
     option.value = option.textContent = i;
     levelDiffSelect.appendChild(option);
   }
+  
+  const bossSelect = document.getElementById('bossSelect');
+  Object.entries(bossTable).forEach(([key, data]) => {
+    const option = document.createElement('option');
+    option.value = key;
+    option.textContent = data.name;
+    bossSelect.appendChild(option);
+  });
 }
 
+//帶入BOSS或副本數值
+document.getElementById('bossSelect').addEventListener('change', function() {
+	const selectedBoss = this.value;
+	if (selectedBoss && bossTable[selectedBoss]) {
+		const data = bossTable[selectedBoss];
+		document.getElementById('finalReduce').value = data.finalReduce;
+		document.getElementById('defReduction').value = data.defReduction;
+		document.getElementById('resist').value = data.resist;
+	} 
+	else {
+		document.getElementById('finalReduce').value = '';
+		document.getElementById('defReduction').value = '';
+		document.getElementById('resist').value = '';
+	}
+	calculateDamage();
+});
+
 function clearInput(id) {
-  document.getElementById(id).value = '';
-  calculateDamage();  
-  document.getElementById(id).focus();
+	document.getElementById(id).value = '';  
+	document.getElementById(id).focus();
+	calculateDamage();
+	calculateAddDmg();
 }
 
 const form = document.getElementById('damageForm');
@@ -532,8 +574,8 @@ function calculateDamage() {
   const elem = get('elementDamage') / 100;
   const elem2 = get('targetElementDamage') / 100;
   const weapon = get('mainWeaponDamage') / 100;
-  const weleMatch = getCheckbox('weaponElementMatch') ? 0.2 : 0;
-  const resistMatch = getCheckbox('skillElementMatch') ? 0.25 : 0;
+  const weleMatch = (getCheckbox('weaponElementMatch') ? 20 : 0) / 100;
+  const resistMatch = (getCheckbox('skillElementMatch') ? 25 : 0) / 100;
   const lvDiff = get('levelDiff') * 0.005;
   const resist = get('resist') / 100;
   const def = get('defReduction') / 100;
