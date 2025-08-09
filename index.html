@@ -721,9 +721,9 @@ function calculateAddDmg() {
   const label = document.getElementById('newBonus');
   let num1 = newcritAvg - critAvg;
   let num2 = critAvg;
-  if (isNaN(num1) || isNaN(num2) || num2 === 0) {
-	label.textContent = '無效';
-	label.className = 'text-danger fw-bold';
+  if (isNaN(num1) || isNaN(num2) || num2 === 0 || newcritAvg === 0) {
+	label.textContent = '尚未輸入更新後機體資料';
+	label.className = 'text-secondary fw-bold';
 	return;
   }  
   const percent = ((num1 / num2) * 100).toFixed(2); // 保留兩位小數
