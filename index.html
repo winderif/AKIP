@@ -39,6 +39,9 @@ body {
 	 border: none;
 	 background-color: var(--bs-body-bg);
 }
+input {
+    font-size: 18px !important;
+}
 </style>
 </head>
     
@@ -58,7 +61,7 @@ body {
                         </label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="skillPanel" value="75555"
-                            pattern="\d*" maxlength="10">
+                            pattern="\d*" inputmode="numeric" maxlength="10">
                             <button class="btn btn-outline-secondary" type="button" onclick="clearInput('skillPanel')">
                                 清空
                             </button>
@@ -96,7 +99,7 @@ body {
                         </label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="damagePercent" value="100"
-                            placeholder="0" pattern="\d*" maxlength="3">
+                            placeholder="0" pattern="\d*" inputmode="numeric" maxlength="3">
                             <span class="input-group-text">
                                 %
                             </span>
@@ -112,7 +115,7 @@ body {
                         </label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="skillDamagePercent" value="100"
-                            placeholder="0" pattern="\d*" maxlength="3">
+                            placeholder="0" pattern="\d*" inputmode="numeric" maxlength="3">
                             <span class="input-group-text">
                                 %
                             </span>
@@ -131,7 +134,7 @@ body {
                         </label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="extraDamage" value="" placeholder="0"
-                            pattern="\d*" maxlength="3">
+                            pattern="\d*" inputmode="numeric" maxlength="3">
                             <span class="input-group-text">
                                 %
                             </span>
@@ -146,7 +149,7 @@ body {
                         </label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="elementDamage" value=""
-                            placeholder="0" pattern="\d*" maxlength="3">
+                            placeholder="0" pattern="\d*" inputmode="numeric" maxlength="3">
                             <span class="input-group-text">
                                 %
                             </span>
@@ -163,7 +166,7 @@ body {
                         </label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="targetElementDamage" value=""
-                            placeholder="0" pattern="\d*" maxlength="3">
+                            placeholder="0" pattern="\d*" inputmode="numeric" maxlength="3">
                             <span class="input-group-text">
                                 %
                             </span>
@@ -178,7 +181,7 @@ body {
                         </label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="mainWeaponDamage" value=""
-                            placeholder="0" pattern="\d*" maxlength="3">
+                            placeholder="0" pattern="\d*" inputmode="numeric" maxlength="3">
                             <span class="input-group-text">
                                 %
                             </span>
@@ -191,7 +194,7 @@ body {
 				<div class="row mb-3">
 					<div class="col-md-12">
 						<div class="form-check bg-dark py-2 my-3">
-							<input class="form-check-input" type="checkbox" id="weaponElementMatch">
+							<input class="form-check-input ms-1 me-1" type="checkbox" id="weaponElementMatch">
 							<label class="form-check-label" for="weaponElementMatch">
 								武器屬性同技能屬性 (同屬性傷害提高20%)
 							</label>
@@ -212,7 +215,7 @@ body {
                         </label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="EleDmgTaken" value="" placeholder="0"
-                            pattern="\d*" maxlength="3">
+                            pattern="\d*" inputmode="numeric" maxlength="3">
                             <span class="input-group-text">
                                 %
                             </span>
@@ -229,7 +232,7 @@ body {
                         </label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="critDmg" value="130" placeholder="0"
-                            pattern="\d*" maxlength="3">
+                            pattern="\d*" inputmode="numeric" maxlength="3">
                             <span class="input-group-text">
                                 %
                             </span>
@@ -244,7 +247,7 @@ body {
                         </label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="dmgDealt" value="" placeholder="0"
-                            pattern="\d*" maxlength="3">
+                            pattern="\d*" inputmode="numeric" maxlength="3">
                             <span class="input-group-text">
                                 %
                             </span>
@@ -270,7 +273,7 @@ body {
                         </label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="elemResist" value="" placeholder="0"
-                            pattern="\d*" maxlength="3">
+                            pattern="\d*" inputmode="numeric" maxlength="3">
                             <span class="input-group-text">
                                 %
                             </span>
@@ -285,7 +288,7 @@ body {
                         </label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="defReduction" value="" placeholder="0"
-                            pattern="\d*" maxlength="3">
+                            pattern="\d*" inputmode="numeric" maxlength="3">
                             <span class="input-group-text">
                                 %
                             </span>
@@ -302,7 +305,7 @@ body {
                         </label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="critResist" value="" placeholder="0"
-                            pattern="\d*" maxlength="3">
+                            pattern="\d*" inputmode="numeric" maxlength="3">
                             <span class="input-group-text">
                                 %
                             </span>
@@ -317,7 +320,7 @@ body {
                         </label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="finalReduce" value="" placeholder="0"
-                            pattern="\d*" maxlength="3">
+                            pattern="\d*" inputmode="numeric" maxlength="3">
                             <span class="input-group-text">
                                 %
                             </span>
@@ -334,7 +337,7 @@ body {
                         </label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="dmgDealtDun" value="" placeholder="0"
-                            pattern="\d*" maxlength="3">
+                            pattern="\d*" inputmode="numeric" maxlength="3">
                             <span class="input-group-text">
                                 %
                             </span>
@@ -349,7 +352,7 @@ body {
 				<div class="row mb-3">					
 					<div class="col-md-12">
 						<div class="form-check bg-dark  py-2 my-3">
-							<input class="form-check-input" type="checkbox" id="skillElementMatch">
+							<input class="form-check-input ms-1 me-1" type="checkbox" id="skillElementMatch">
 							<label class="form-check-label" for="skillElementMatch">
 								技能屬性同敵人屬性 (受到同屬性傷害降低25%)
 							</label>
@@ -371,7 +374,7 @@ body {
                         </label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="newSkillDmg" value="" pattern="\d*"
-                            maxlength="10">
+                            inputmode="numeric" maxlength="10">
                             <button class="btn btn-outline-secondary" type="button" onclick="clearInput('newSkillDmg')">
                                 清空
                             </button>
@@ -391,7 +394,7 @@ body {
                         </label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="newAddSkillDmg" value="" placeholder="0"
-                            pattern="\d*" maxlength="3">
+                            pattern="\d*" inputmode="numeric" maxlength="3">
                             <span class="input-group-text">
                                 %
                             </span>
@@ -406,7 +409,7 @@ body {
                         </label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="newElemDmg" value="" placeholder="0"
-                            pattern="\d*" maxlength="3">
+                            pattern="\d*" inputmode="numeric" maxlength="3">
                             <span class="input-group-text">
                                 %
                             </span>
@@ -423,7 +426,7 @@ body {
                         </label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="newTargetElemDmg" value=""
-                            placeholder="0" pattern="\d*" maxlength="3">
+                            placeholder="0" pattern="\d*" inputmode="numeric" maxlength="3">
                             <span class="input-group-text">
                                 %
                             </span>
@@ -438,7 +441,7 @@ body {
                         </label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="newWeaponDmg" value="" placeholder="0"
-                            pattern="\d*" maxlength="3">
+                            pattern="\d*" inputmode="numeric" maxlength="3">
                             <span class="input-group-text">
                                 %
                             </span>
@@ -455,7 +458,7 @@ body {
                         </label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="newCritDmg" value="" placeholder="0"
-                            pattern="\d*" maxlength="3">
+                            pattern="\d*" inputmode="numeric" maxlength="3">
                             <span class="input-group-text">
                                 %
                             </span>
@@ -470,7 +473,7 @@ body {
                         </label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="newDealDmg" value="" placeholder="0"
-                            pattern="\d*" maxlength="3">
+                            pattern="\d*" inputmode="numeric" maxlength="3">
                             <span class="input-group-text">
                                 %
                             </span>
