@@ -617,10 +617,12 @@ function calculateDamage() {
   const EleDmgTaken = get('EleDmgTaken') / 100;
   const dmgDealtDun = get('dmgDealtDun') / 100;
   
-  if skillPanel > 0 
+  if (skillPanel > 0) {
 	document.getElementById('damageHide').value = Math.round((skillPanel - (base * skillPct)) / dmgPct, 0);
-  else 
+  }
+  else {
 	document.getElementById('damageHide').value = '';
+  }
   let damageHide = get('damageHide');
 
   let raw = (base * skillPct + damageHide * (dmgPct + tech + elem + elem2 + weapon + weleMatch + EleDmgTaken + lvDiff - elemResist - def - resistMatch));
@@ -703,10 +705,12 @@ function calculateAddDmg() {
   const newCritDmg = (get('newCritDmg') - get('critResist')) / 100;
   const newDealDmg = get('newDealDmg') / 100;  
   
-  if newSkillDmg > 0 
+  if (newSkillDmg > 0) {
 	document.getElementById('newPanelDmg').value = Math.round((newSkillDmg - (base * skillPct)) / dmgPct, 0);
-  else 
+  }
+  else {
     document.getElementById('newPanelDmg').value = '';
+  }
   let newDamageHide = get('newPanelDmg');
 
   let raw = (base * skillPct + damageHide * (dmgPct + tech + elem + elem2 + weapon + weleMatch + EleDmgTaken + lvDiff - elemResist - def - resistMatch));  
