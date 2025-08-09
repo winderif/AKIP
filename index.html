@@ -523,10 +523,10 @@ Promise.all([
 		damageTable = damageData;
 		bossTable = bossData;
 		populateSelects();
-		
-		calculateDamage();
+				
 		document.getElementById("skillLevel").value = "75";
 		document.getElementById("levelDiff").value = "5";
+		calculateDamage();
 });
   
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
@@ -613,7 +613,7 @@ function calculateDamage() {
   const def = get('defReduction') / 100;
   const crit = (get('critDmg') - get('critResist')) / 100;
   const dmgDealt = get('dmgDealt') / 100;
-  const reduce = get('finalReduce') / 100;
+  const reduce = 1 - get('finalReduce') / 100;
   const EleDmgTaken = get('EleDmgTaken') / 100;
   const dmgDealtDun = get('dmgDealtDun') / 100;
   
