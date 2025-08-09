@@ -232,16 +232,16 @@ body {
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="targetBonus" class="form-label">
+                        <label for="dmgDealt" class="form-label">
                             造傷% (對XX目標的傷害提高%)
                         </label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="targetBonus" value="" placeholder="0"
+                            <input type="text" class="form-control" id="dmgDealt" value="" placeholder="0"
                             pattern="\d*" maxlength="3">
                             <span class="input-group-text">
                                 %
                             </span>
-                            <button class="btn btn-outline-secondary" type="button" onclick="clearInput('targetBonus')">
+                            <button class="btn btn-outline-secondary" type="button" onclick="clearInput('dmgDealt')">
                                 清空
                             </button>
                         </div>
@@ -320,12 +320,31 @@ body {
                         </div>
                     </div>
                 </div>
+				<div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="dmgDealtDun" class="form-label">
+                            造傷% (副本壓制)
+                        </label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="dmgDealtDun" value="" placeholder="0"
+                            pattern="\d*" maxlength="3">
+                            <span class="input-group-text">
+                                %
+                            </span>
+                            <button class="btn btn-outline-secondary" type="button" onclick="clearInput('dmgDealtDun')">
+                                清空
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                    </div>
+                </div>
                 <div class="form-check mb-3">
                     <input class="form-check-input" type="checkbox" id="skillElementMatch">
                     <label class="form-check-label" for="skillElementMatch">
                         技能屬性同敵人屬性 (受到同屬性傷害降低25%)
                     </label>
-                </div>
+                </div>				
             </form>
             <form id="newDamageForm">
                 <hr class="my-5">
@@ -546,6 +565,7 @@ document.getElementById('bossSelect').addEventListener('change', function() {
 		document.getElementById('resist').value = '';
 	}
 	calculateDamage();
+	calculateAddDmg();
 });
 
 function clearInput(id) {
@@ -580,16 +600,17 @@ function calculateDamage() {
   const resist = get('resist') / 100;
   const def = get('defReduction') / 100;
   const crit = (get('critDmg') - get('critResist')) / 100;
-  const bonus = 1 + get('targetBonus') / 100;
-  const reduce = 1 - get('finalReduce') / 100;
+  const dmgDealt = get('dmgDealt') / 100;
+  const reduce = get('finalReduce') / 100;
   const EleDmgTaken = get('EleDmgTaken') / 100;
+  const dmgDealtDun = get('dmgDealtDun') / 100;
   
   document.getElementById('damageHide').value = Math.round((skillPanel - (base * skillPct)) / dmgPct, 0);
   let damageHide = get('damageHide');
 
   let raw = (base * skillPct + damageHide * (dmgPct + tech + elem + elem2 + weapon + weleMatch + EleDmgTaken + lvDiff - resist - def - resistMatch));
-  let nonCritAvg = raw * bonus * reduce;
-  let critAvg = raw * crit * bonus * reduce;
+  let nonCritAvg = raw * (1 + dmgDealt - dmgDealtDun) * reduce;
+  let critAvg = raw * crit * (1 + dmgDealt - dmgDealtDun) * reduce;
 
   const fmt = n => Math.round(n).toLocaleString();  
   //setText('critResult', `平均：${fmt(critAvg)}（${fmt(critAvg * 0.9)} ~ ${fmt(critAvg * 1.1)})`);
@@ -609,7 +630,7 @@ function copyTo() {
   const elem2 = get('targetElementDamage');
   const weapon = get('mainWeaponDamage');
   const crit = get('critDmg');
-  const bonus = get('targetBonus');
+  const dmgDealt = get('dmgDealt');
     
   document.getElementById('newPanelDmg').value = Math.round((skillPanel - (base * skillPct)) / dmgPct, 0);  
   document.getElementById('newSkillDmg').value = skillPanel;
@@ -618,7 +639,9 @@ function copyTo() {
   document.getElementById('newTargetElemDmg').value = elem2;
   document.getElementById('newWeaponDmg').value = weapon;
   document.getElementById('newCritDmg').value = crit;
-  document.getElementById('newDealDmg').value = bonus;
+  document.getElementById('newDealDmg').value = dmgDealt;
+  
+  document.getElementById('newSkillDmg').scrollIntoView({ behavior: 'smooth' });
 }
 
 const form2 = document.getElementById('newDamageForm');
@@ -646,9 +669,10 @@ function calculateAddDmg() {
   const resist = get('resist') / 100;
   const def = get('defReduction') / 100;
   const crit = (get('critDmg') - get('critResist')) / 100;
-  const bonus = 1 + get('targetBonus') / 100;
+  const dmgDealt = get('dmgDealt') / 100;
   const reduce = 1 - get('finalReduce') / 100;
   const EleDmgTaken = get('EleDmgTaken') / 100;
+  const dmgDealtDun = get('dmgDealtDun') / 100;
   
   document.getElementById('damageHide').value = Math.round((skillPanel - (base * skillPct)) / dmgPct, 0);
   let damageHide = get('damageHide');
@@ -660,16 +684,16 @@ function calculateAddDmg() {
   const newTargetElemDmg = get('newTargetElemDmg') / 100;
   const newWeaponDmg = get('newWeaponDmg') / 100;
   const newCritDmg = (get('newCritDmg') - get('critResist')) / 100;
-  const newDealDmg = 1 + get('newDealDmg') / 100;  
+  const newDealDmg = get('newDealDmg') / 100;  
   
   document.getElementById('newPanelDmg').value = Math.round((newSkillDmg - (base * skillPct)) / dmgPct, 0);
   let newDamageHide = get('newPanelDmg');
 
   let raw = (base * skillPct + damageHide * (dmgPct + tech + elem + elem2 + weapon + weleMatch + EleDmgTaken + lvDiff - resist - def - resistMatch));  
-  let critAvg = raw * crit * bonus * reduce;
+  let critAvg = raw * crit * (1 + dmgDealt - dmgDealtDun) * reduce;
   
   let newraw = (base * skillPct + newDamageHide * (dmgPct + newAddSkillDmg + newElemDmg + newTargetElemDmg + newWeaponDmg + weleMatch + EleDmgTaken + lvDiff - resist - def - resistMatch));  
-  let newcritAvg = newraw * newCritDmg * newDealDmg * reduce;  
+  let newcritAvg = newraw * newCritDmg * (1 + newDealDmg - dmgDealtDun) * reduce;  
   
   const label = document.getElementById('newBonus');
   let num1 = newcritAvg - critAvg;

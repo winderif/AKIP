@@ -1,5 +1,62 @@
 {
-  "boss1": { "name": "烈焰魔龍", "finalReduce": 10, "defReduction": 5, "resist": 20 },
-  "boss2": { "name": "寒冰巨人", "finalReduce": 15, "defReduction": 8, "resist": 10 },
-  "boss3": { "name": "雷霆領主", "finalReduce": 5, "defReduction": 3, "resist": 5 }
+  "boss1": {
+    "bname": "泰達之根(裝備)(五人)＜魅香女王＞露絲",
+    "dmg_dealt": -65,
+    "dmg_taken": -50,
+    "crit_dmg_taken": -50
+  },
+  "boss2": {
+    "bname": "卡迪拉妖森(裝備)(五人)＜暴食魔君＞葛恩尼",
+    "dmg_dealt": -65,
+    "dmg_taken": -50,
+    "crit_dmg_taken": -50
+  },
+  "boss3": {
+    "bname": "寒霜冰境(裝備)(五人)＜深淵魔獸＞古斯格勒",
+    "dmg_dealt": -65,
+    "dmg_taken": -50,
+    "crit_dmg_taken": -50
+  },
+  "boss4": {
+    "bname": "寒霜冰境(裝備)(五人)＜冰雪貴公子＞奧格斯",
+    "dmg_dealt": -65,
+    "dmg_taken": -65,
+    "crit_dmg_taken": -50
+  },
+  "boss5": {
+    "bname": "寒霜冰境(裝備)(五人)＜黑闇領主＞黑騎士",
+    "dmg_dealt": -65,
+    "dmg_taken": -70,
+    "crit_dmg_taken": -50
+  },
+  "boss6": {
+    "bname": "雷龍王的悲鳴之間＜雷龍王＞特拉洛克",
+    "dmg_dealt": -55,
+    "dmg_taken": -70,
+    "crit_dmg_taken": -50
+  },
+  "boss7": {
+    "bname": "翔龍王的降臨(普通)＜翔龍王＞弗拉科嘉",
+    "dmg_dealt": -55,
+    "dmg_taken": -70,
+    "crit_dmg_taken": -50
+  },
+  "boss8": {
+    "bname": "水龍王的圍困之役(普通)＜水龍之后＞莎亞娜",
+    "dmg_dealt": -65,
+    "dmg_taken": -80,
+    "crit_dmg_taken": -50
+  },
+  "boss9": {
+    "bname": "翔龍王的降臨(困難)＜翔龍王＞弗拉科嘉",
+    "dmg_dealt": -55,
+    "dmg_taken": -80,
+    "crit_dmg_taken": -50
+  },
+  "boss10": {
+    "bname": "水龍王的圍困之役(困難)＜水龍之后＞莎亞娜",
+    "dmg_dealt": -65,
+    "dmg_taken": -80,
+    "crit_dmg_taken": -50
+  }
 }
