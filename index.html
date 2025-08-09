@@ -508,6 +508,10 @@ input {
                     <div class="col-12 text-center" id="newBonus">
                     </div>
                 </div>
+				<div class="row text-center fs-6">
+                    <div class="col-12 text-center" id="dmgOldNew">
+                    </div>
+                </div>
             </div>
         </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -624,6 +628,7 @@ function calculateDamage() {
   let damageHide = get('damageHide');
 
   let raw = (base * skillPct + damageHide * (dmgPct + tech + elem + elem2 + weapon + weleMatch + EleDmgTaken + lvDiff - elemResist - def - resistMatch));
+  raw = raw > 0 ? raw : 1;
   let nonCritAvg = raw * (1 + dmgDealt + dmgDealtDun) * reduce;
   let critAvg = raw * crit * (1 + dmgDealt + dmgDealtDun) * reduce;
 
@@ -713,22 +718,28 @@ function calculateAddDmg() {
   }
   let newDamageHide = get('newPanelDmg');
 
-  let raw = (base * skillPct + damageHide * (dmgPct + tech + elem + elem2 + weapon + weleMatch + EleDmgTaken + lvDiff - elemResist - def - resistMatch));  
+  let raw = (base * skillPct + damageHide * (dmgPct + tech + elem + elem2 + weapon + weleMatch + EleDmgTaken + lvDiff - elemResist - def - resistMatch));    
+  raw = raw > 0 ? raw : 1 ; 
   let critAvg = raw * crit * (1 + dmgDealt + dmgDealtDun) * reduce;
   
   let newraw = (base * skillPct + newDamageHide * (dmgPct + newAddSkillDmg + newElemDmg + newTargetElemDmg + newWeaponDmg + weleMatch + EleDmgTaken + lvDiff - elemResist - def - resistMatch));  
+  newraw = newraw > 0 ? newraw : 1;
   let newcritAvg = newraw * newCritDmg * (1 + newDealDmg + dmgDealtDun) * reduce;  
-  
+    
   const label = document.getElementById('newBonus');
+  const dmg_lb = document.getElementById('dmgOldNew');
   let num1 = newcritAvg - critAvg;
   let num2 = critAvg;
   if (isNaN(num1) || isNaN(num2) || num2 === 0 || newPanelDmg == 0) {
 	label.textContent = '尚未輸入更新後機體資料';
+	dmg_lb.textContent = '';
 	label.className = 'text-secondary fw-bold';
 	return;
   }  
+  const fmt = n => Math.round(n).toLocaleString();  
   const percent = ((num1 / num2) * 100).toFixed(2); // 保留兩位小數
   label.textContent = (percent >= 0 ? "總傷害+" : "總傷害")+`${percent}%`;
+  dmg_lb.textContent = `${fmt(critAvg)} → ${fmt(newcritAvg)}`;
   
   if (percent >= 0) {
 	label.className = 'text-success fw-bold'; // 綠色
