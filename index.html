@@ -10,37 +10,33 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">	
 <style>
 body {
-	 background-color: #121212;
-	 color: #f1f1f1;
+	background-color: #121212;
+	color: #f1f1f1;
 }
- .fixed-bottom-bar {
-	 position: sticky;
-	 bottom: 0;
-	 left: 0;
-	 width: 100%;
-	 background-color: #1f1f1f;
-	 border-top: 1px solid #333;
-	 padding: 1rem;
-	 z-index: 1030;
+.fixed-bottom-bar {
+	position: sticky;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background-color: #1f1f1f;
+	border-top: 1px solid #333;
+	padding: 1rem;
+	z-index: 1030;
 }
-/* input.form-control, span.input-group-text, .form-control:focus, .form-select.option {
-	 background-color: #2a2a2a;
-	 color: #fff;
-	 border: 1px solid #2a2a2a;
+html[data-bs-theme="dark"] input.form-control, .form-select {
+	border: none;
 }
- .form-control::placeholder {
-	 color: #fff;
+html[data-bs-theme="dark"] span.input-group-text {
+	border: none;
+	background-color: var(--bs-body-bg);
 }
- */
- html[data-bs-theme="dark"] input.form-control, .form-select {
-	 border: none;
+html[data-bs-theme="dark"] span.plus-text {
+	background-color: #121212;
+	color: #f1f1f1;
 }
- html[data-bs-theme="dark"] span.input-group-text {
-	 border: none;
-	 background-color: var(--bs-body-bg);
-}
+
 input {
-    font-size: 18px !important;
+	font-size: 18px !important;
 }
 </style>
 </head>
@@ -63,7 +59,7 @@ input {
                             <input type="text" class="form-control" id="skillPanel" value="75555"
                             pattern="\d*" inputmode="numeric" maxlength="10">
                             <button class="btn btn-outline-secondary" type="button" onclick="clearInput('skillPanel')">
-                                清空
+                                ✕
                             </button>
                         </div>
                     </div>
@@ -112,7 +108,7 @@ input {
                                 %
                             </span>
                             <button class="btn btn-outline-secondary" type="button" onclick="clearInput('damagePercent')">
-                                清空
+                                ✕
                             </button>
                         </div>
                     </div>					
@@ -128,7 +124,7 @@ input {
                                 %
                             </span>
                             <button class="btn btn-outline-secondary" type="button" onclick="clearInput('skillDamagePercent')">
-                                清空
+                                ✕
                             </button>
                         </div>
                     </div>
@@ -147,7 +143,7 @@ input {
                                 %
                             </span>
                             <button class="btn btn-outline-secondary" type="button" onclick="clearInput('extraDamage')">
-                                清空
+                                ✕
                             </button>
                         </div>
                     </div>
@@ -162,7 +158,7 @@ input {
                                 %
                             </span>
                             <button class="btn btn-outline-secondary" type="button" onclick="clearInput('elementDamage')">
-                                清空
+                                ✕
                             </button>
                         </div>
                     </div>
@@ -179,7 +175,7 @@ input {
                                 %
                             </span>
                             <button class="btn btn-outline-secondary" type="button" onclick="clearInput('targetElementDamage')">
-                                清空
+                                ✕
                             </button>
                         </div>
                     </div>
@@ -194,7 +190,7 @@ input {
                                 %
                             </span>
                             <button class="btn btn-outline-secondary" type="button" onclick="clearInput('mainWeaponDamage')">
-                                清空
+                                ✕
                             </button>
                         </div>
                     </div>
@@ -228,7 +224,7 @@ input {
                                 %
                             </span>
                             <button class="btn btn-outline-secondary" type="button" onclick="clearInput('EleDmgTaken')">
-                                清空
+                                ✕
                             </button>
                         </div>
                     </div>
@@ -245,7 +241,7 @@ input {
                                 %
                             </span>
                             <button class="btn btn-outline-secondary" type="button" onclick="clearInput('critDmg')">
-                                清空
+                                ✕
                             </button>
                         </div>
                     </div>
@@ -260,7 +256,7 @@ input {
                                 %
                             </span>
                             <button class="btn btn-outline-secondary" type="button" onclick="clearInput('dmgDealt')">
-                                清空
+                                ✕
                             </button>
                         </div>
                     </div>
@@ -286,7 +282,7 @@ input {
                                 %
                             </span>
                             <button class="btn btn-outline-secondary" type="button" onclick="clearInput('elemResist')">
-                                清空
+                                ✕
                             </button>
                         </div>
                     </div>
@@ -301,7 +297,7 @@ input {
                                 %
                             </span>
                             <button class="btn btn-outline-secondary" type="button" onclick="clearInput('defReduction')">
-                                清空
+                                ✕
                             </button>
                         </div>
                     </div>
@@ -318,7 +314,7 @@ input {
                                 %
                             </span>
                             <button class="btn btn-outline-secondary" type="button" onclick="clearInput('critResist')">
-                                清空
+                                ✕
                             </button>
                         </div>
                     </div>
@@ -333,7 +329,7 @@ input {
                                 %
                             </span>
                             <button class="btn btn-outline-secondary" type="button" onclick="clearInput('finalReduce')">
-                                清空
+                                ✕
                             </button>
                         </div>
                     </div>
@@ -350,7 +346,7 @@ input {
                                 %
                             </span>
                             <button class="btn btn-outline-secondary" type="button" onclick="clearInput('dmgDealtDun')">
-                                清空
+                                ✕
                             </button>
                         </div>
                     </div>
@@ -374,7 +370,7 @@ input {
 					<div class="col-md-12">
 						<p class="h3 text-center bg-black py-2">預計更新的機體</p>
 					</div>
-				</div>
+				</div>				
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="newSkillDmg" class="form-label">
@@ -384,7 +380,13 @@ input {
                             <input type="text" class="form-control" id="newSkillDmg" value="" pattern="\d*"
                             inputmode="numeric" maxlength="10">
                             <button class="btn btn-outline-secondary" type="button" onclick="clearInput('newSkillDmg')">
-                                清空
+                                ✕
+                            </button>
+							<span class="input-group-text plus-text">＋</span>
+							<input type="text" class="form-control" id="newSkillDmg2" value="" pattern="\d*"
+                            inputmode="numeric" maxlength="10">
+                            <button class="btn btn-outline-secondary" type="button" onclick="clearInput('newSkillDmg2')">
+                                ✕
                             </button>
                         </div>
                     </div>
@@ -403,11 +405,16 @@ input {
                         <div class="input-group">
                             <input type="text" class="form-control" id="newAddSkillDmg" value="" placeholder="0"
                             pattern="\d*" inputmode="numeric" maxlength="3">
-                            <span class="input-group-text">
-                                %
-                            </span>
+                            <span class="input-group-text">%</span>
                             <button class="btn btn-outline-secondary" type="button" onclick="clearInput('newAddSkillDmg')">
-                                清空
+                                ✕
+                            </button>
+							<span class="input-group-text plus-text">＋</span>
+							<input type="text" class="form-control" id="newAddSkillDmg2" value="" placeholder="0" pattern="\d*"
+                            inputmode="numeric" maxlength="3">
+							<span class="input-group-text">%</span>
+                            <button class="btn btn-outline-secondary" type="button" onclick="clearInput('newAddSkillDmg2')">
+                                ✕
                             </button>
                         </div>
                     </div>
@@ -422,7 +429,14 @@ input {
                                 %
                             </span>
                             <button class="btn btn-outline-secondary" type="button" onclick="clearInput('newElemDmg')">
-                                清空
+                                ✕
+                            </button>
+							<span class="input-group-text plus-text">＋</span>
+							<input type="text" class="form-control" id="newElemDmg2" value="" placeholder="0" pattern="\d*"
+                            inputmode="numeric" maxlength="3">
+							<span class="input-group-text">%</span>
+                            <button class="btn btn-outline-secondary" type="button" onclick="clearInput('newElemDmg2')">
+                                ✕
                             </button>
                         </div>
                     </div>
@@ -439,7 +453,14 @@ input {
                                 %
                             </span>
                             <button class="btn btn-outline-secondary" type="button" onclick="clearInput('newTargetElemDmg')">
-                                清空
+                                ✕
+                            </button>
+							<span class="input-group-text plus-text">＋</span>
+							<input type="text" class="form-control" id="newTargetElemDmg2" value="" placeholder="0" pattern="\d*"
+                            inputmode="numeric" maxlength="3">
+							<span class="input-group-text">%</span>
+                            <button class="btn btn-outline-secondary" type="button" onclick="clearInput('newTargetElemDmg2')">
+                                ✕
                             </button>
                         </div>
                     </div>
@@ -454,7 +475,14 @@ input {
                                 %
                             </span>
                             <button class="btn btn-outline-secondary" type="button" onclick="clearInput('newWeaponDmg')">
-                                清空
+                                ✕
+                            </button>
+							<span class="input-group-text plus-text">＋</span>
+							<input type="text" class="form-control" id="newWeaponDmg2" value="" placeholder="0" pattern="\d*"
+                            inputmode="numeric" maxlength="3">
+							<span class="input-group-text">%</span>
+                            <button class="btn btn-outline-secondary" type="button" onclick="clearInput('newWeaponDmg2')">
+                                ✕
                             </button>
                         </div>
                     </div>
@@ -471,7 +499,14 @@ input {
                                 %
                             </span>
                             <button class="btn btn-outline-secondary" type="button" onclick="clearInput('newCritDmg')">
-                                清空
+                                ✕
+                            </button>
+							<span class="input-group-text plus-text">＋</span>
+							<input type="text" class="form-control" id="newCritDmg2" value="" placeholder="0" pattern="\d*"
+                            inputmode="numeric" maxlength="3">
+							<span class="input-group-text">%</span>
+                            <button class="btn btn-outline-secondary" type="button" onclick="clearInput('newCritDmg2')">
+                                ✕
                             </button>
                         </div>
                     </div>
@@ -486,7 +521,14 @@ input {
                                 %
                             </span>
                             <button class="btn btn-outline-secondary" type="button" onclick="clearInput('newDealDmg')">
-                                清空
+                                ✕
+                            </button>
+							<span class="input-group-text plus-text">＋</span>
+							<input type="text" class="form-control" id="newDealDmg2" value="" placeholder="0" pattern="\d*"
+                            inputmode="numeric" maxlength="3">
+							<span class="input-group-text">%</span>
+                            <button class="btn btn-outline-secondary" type="button" onclick="clearInput('newDealDmg2')">
+                                ✕
                             </button>
                         </div>
                     </div>
@@ -570,7 +612,7 @@ Promise.all([
 	if (jQuery.isEmptyObject(bossTable))
 		bossTable = bossData;
 	if (jQuery.isEmptyObject(skillTable))
-		skillTable = skillData;
+		skillTable = skillData;	
 			
 }).finally(() => {
 	populateSelects();
@@ -639,7 +681,7 @@ document.getElementById('bossSelect').addEventListener('change', function() {
 	calculateDamage();	
 });
 
-//帶入BOSS或副本數值
+//帶入技能係數
 document.getElementById('skillSelect').addEventListener('change', function() {
 	const selectedSkill = this.value;
 	if (selectedSkill && skillTable[selectedSkill]) {
@@ -733,6 +775,14 @@ function copyTo() {
   document.getElementById('newWeaponDmg').value = weapon > 0 ? weapon : '';
   document.getElementById('newCritDmg').value = crit > 0 ? crit : '';
   document.getElementById('newDealDmg').value = dmgDealt > 0 ? dmgDealt : '';
+    
+  document.getElementById('newSkillDmg2').value = '';
+  document.getElementById('newAddSkillDmg2').value = '';
+  document.getElementById('newElemDmg2').value = '';
+  document.getElementById('newTargetElemDmg2').value = '';
+  document.getElementById('newWeaponDmg2').value = '';
+  document.getElementById('newCritDmg2').value = '';
+  document.getElementById('newDealDmg2').value = '';
   
   calculateAddDmg();
   
@@ -773,13 +823,13 @@ function calculateAddDmg() {
   let damageHide = get('damageHide');
   
   const newPanelDmg = get('newPanelDmg');
-  const newSkillDmg = get('newSkillDmg');  
-  const newAddSkillDmg = get('newAddSkillDmg') / 100;
-  const newElemDmg = get('newElemDmg') / 100;
-  const newTargetElemDmg = get('newTargetElemDmg') / 100;
-  const newWeaponDmg = get('newWeaponDmg') / 100;
-  const newCritDmg = (get('newCritDmg') - get('critResist')) / 100;
-  const newDealDmg = get('newDealDmg') / 100;  
+  const newSkillDmg = get('newSkillDmg') + get('newSkillDmg2');  
+  const newAddSkillDmg = (get('newAddSkillDmg') + get('newAddSkillDmg2')) / 100;
+  const newElemDmg = (get('newElemDmg') + get('newElemDmg2')) / 100;
+  const newTargetElemDmg = (get('newTargetElemDmg') + get('newTargetElemDmg2'))/ 100;
+  const newWeaponDmg = (get('newWeaponDmg') + get('newWeaponDmg2')) / 100;
+  const newCritDmg = (get('newCritDmg') + get('newCritDmg2') - get('critResist')) / 100;
+  const newDealDmg = (get('newDealDmg') + get('newDealDmg2')) / 100;  
   
   if (newSkillDmg > 0) {
 	document.getElementById('newPanelDmg').value = Math.round((newSkillDmg - (base * skillPct)) / dmgPct, 0);
