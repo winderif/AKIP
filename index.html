@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-Hant" data-bs-theme="dark">
-<head>
-	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<head>	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>
@@ -523,6 +522,7 @@ input {
                 </div>
             </div>
         </div>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 let damageTable = {};
@@ -565,11 +565,11 @@ Promise.all([
 			  };
 		})	
 ]).then(([damageData, bossData, skillData]) => {
-	if (jQuery.isEmptyObject({damageTable}))
+	if (jQuery.isEmptyObject(damageTable))
 		damageTable = damageData;
-	if (jQuery.isEmptyObject({bossTable}))
+	if (jQuery.isEmptyObject(bossTable))
 		bossTable = bossData;
-	if (jQuery.isEmptyObject({skillTable}))
+	if (jQuery.isEmptyObject(skillTable))
 		skillTable = skillData;
 			
 }).finally(() => {
