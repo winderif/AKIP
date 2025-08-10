@@ -1,0 +1,289 @@
+{
+  "1": {
+    "class_id": 1,
+    "class_name": "雙刀",
+    "skill_name": "斬切",
+    "dmg_coef": 155,
+    "skill_coef": 155
+  },
+  "2": {
+    "class_id": 1,
+    "class_name": "雙刀",
+    "skill_name": "十字斬",
+    "dmg_coef": 145,
+    "skill_coef": 145
+  },
+  "3": {
+    "class_id": 1,
+    "class_name": "雙刀",
+    "skill_name": "散華雪",
+    "dmg_coef": 140,
+    "skill_coef": 140
+  },
+  "4": {
+    "class_id": 1,
+    "class_name": "雙刀",
+    "skill_name": "旋舞閃",
+    "dmg_coef": 145,
+    "skill_coef": 145
+  },
+  "5": {
+    "class_id": 1,
+    "class_name": "雙刀",
+    "skill_name": "瞬影殺",
+    "dmg_coef": 210,
+    "skill_coef": 210
+  },
+  "6": {
+    "class_id": 1,
+    "class_name": "雙刀",
+    "skill_name": "蝶舞刃",
+    "dmg_coef": 175,
+    "skill_coef": 175
+  },
+  "7": {
+    "class_id": 2,
+    "class_name": "劍盾",
+    "skill_name": "盾刃重劈",
+    "dmg_coef": 160,
+    "skill_coef": 160
+  },
+  "8": {
+    "class_id": 2,
+    "class_name": "劍盾",
+    "skill_name": "戒慎擊退",
+    "dmg_coef": 40,
+    "skill_coef": 140
+  },
+  "9": {
+    "class_id": 2,
+    "class_name": "劍盾",
+    "skill_name": "暈眩飛躍",
+    "dmg_coef": 140,
+    "skill_coef": 140
+  },
+  "10": {
+    "class_id": 2,
+    "class_name": "劍盾",
+    "skill_name": "雷擊領域",
+    "dmg_coef": 130,
+    "skill_coef": 130
+  },
+  "11": {
+    "class_id": 2,
+    "class_name": "劍盾",
+    "skill_name": "破膽怒吼",
+    "dmg_coef": 120,
+    "skill_coef": 120
+  },
+  "12": {
+    "class_id": 4,
+    "class_name": "雙手杖",
+    "skill_name": "烈火彈",
+    "dmg_coef": 132,
+    "skill_coef": 132
+  },
+  "13": {
+    "class_id": 4,
+    "class_name": "雙手杖",
+    "skill_name": "寒冰咒",
+    "dmg_coef": 147,
+    "skill_coef": 147
+  },
+  "14": {
+    "class_id": 4,
+    "class_name": "雙手杖",
+    "skill_name": "冰風暴",
+    "dmg_coef": 165,
+    "skill_coef": 165
+  },
+  "15": {
+    "class_id": 4,
+    "class_name": "雙手杖",
+    "skill_name": "暴風咒",
+    "dmg_coef": 144,
+    "skill_coef": 144
+  },
+  "16": {
+    "class_id": 4,
+    "class_name": "雙手杖",
+    "skill_name": "火隕石",
+    "dmg_coef": 140,
+    "skill_coef": 140
+  },
+  "17": {
+    "class_id": 4,
+    "class_name": "雙手杖",
+    "skill_name": "瞬雷術",
+    "dmg_coef": 105,
+    "skill_coef": 105
+  },
+  "18": {
+    "class_id": 8,
+    "class_name": "小豎琴",
+    "skill_name": "暴風曲",
+    "dmg_coef": 155,
+    "skill_coef": 155
+  },
+  "19": {
+    "class_id": 8,
+    "class_name": "小豎琴",
+    "skill_name": "天堂聖音",
+    "dmg_coef": 185,
+    "skill_coef": 185
+  },
+  "20": {
+    "class_id": 8,
+    "class_name": "小豎琴",
+    "skill_name": "治療音符",
+    "dmg_coef": 40,
+    "skill_coef": 40
+  },
+  "21": {
+    "class_id": 8,
+    "class_name": "小豎琴",
+    "skill_name": "搖滾電音",
+    "dmg_coef": 210,
+    "skill_coef": 210
+  },
+  "22": {
+    "class_id": 8,
+    "class_name": "小豎琴",
+    "skill_name": "小情歌",
+    "dmg_coef": "",
+    "skill_coef": ""
+  },
+  "23": {
+    "class_id": 8,
+    "class_name": "小豎琴",
+    "skill_name": "療傷合音",
+    "dmg_coef": 15,
+    "skill_coef": 15
+  },
+  "24": {
+    "class_id": 11,
+    "class_name": "太刀",
+    "skill_name": "舞翔閃",
+    "dmg_coef": 140,
+    "skill_coef": 140
+  },
+  "25": {
+    "class_id": 11,
+    "class_name": "太刀",
+    "skill_name": "飛燕返",
+    "dmg_coef": 156,
+    "skill_coef": 156
+  },
+  "26": {
+    "class_id": 11,
+    "class_name": "太刀",
+    "skill_name": "闇牙突",
+    "dmg_coef": 163,
+    "skill_coef": 163
+  },
+  "27": {
+    "class_id": 11,
+    "class_name": "太刀",
+    "skill_name": "居合斬",
+    "dmg_coef": 180,
+    "skill_coef": 180
+  },
+  "28": {
+    "class_id": 11,
+    "class_name": "太刀",
+    "skill_name": "煌龍閃",
+    "dmg_coef": 165,
+    "skill_coef": 165
+  },
+  "29": {
+    "class_id": 11,
+    "class_name": "太刀",
+    "skill_name": "一瞬千斬",
+    "dmg_coef": 185,
+    "skill_coef": 185
+  },
+  "30": {
+    "class_id": 20,
+    "class_name": "星天球",
+    "skill_name": "星霞揮灑",
+    "dmg_coef": 143,
+    "skill_coef": 143
+  },
+  "31": {
+    "class_id": 20,
+    "class_name": "星天球",
+    "skill_name": "引力重壓",
+    "dmg_coef": 160,
+    "skill_coef": 160
+  },
+  "32": {
+    "class_id": 20,
+    "class_name": "星天球",
+    "skill_name": "星河墜禱",
+    "dmg_coef": 160,
+    "skill_coef": 160
+  },
+  "33": {
+    "class_id": 20,
+    "class_name": "星天球",
+    "skill_name": "巨神崩落",
+    "dmg_coef": 163,
+    "skill_coef": 163
+  },
+  "34": {
+    "class_id": 20,
+    "class_name": "星天球",
+    "skill_name": "巡星渦流",
+    "dmg_coef": 167,
+    "skill_coef": 167
+  },
+  "35": {
+    "class_id": 20,
+    "class_name": "星天球",
+    "skill_name": "禍星轟炸",
+    "dmg_coef": 167,
+    "skill_coef": 167
+  },
+  "36": {
+    "class_id": 21,
+    "class_name": "源核砲",
+    "skill_name": "寒霜冰彈",
+    "dmg_coef": 180,
+    "skill_coef": 180
+  },
+  "37": {
+    "class_id": 21,
+    "class_name": "源核砲",
+    "skill_name": "寒霜冰箭",
+    "dmg_coef": 190,
+    "skill_coef": 190
+  },
+  "38": {
+    "class_id": 21,
+    "class_name": "源核砲",
+    "skill_name": "寒霜冰槍",
+    "dmg_coef": 200,
+    "skill_coef": 200
+  },
+  "39": {
+    "class_id": 21,
+    "class_name": "源核砲",
+    "skill_name": "火靈神劍",
+    "dmg_coef": 140,
+    "skill_coef": 140
+  },
+  "40": {
+    "class_id": 21,
+    "class_name": "源核砲",
+    "skill_name": "烈燄焚爆",
+    "dmg_coef": 150,
+    "skill_coef": 150
+  },
+  "41": {
+    "class_id": 21,
+    "class_name": "源核砲",
+    "skill_name": "炎龍奔襲",
+    "dmg_coef": 160,
+    "skill_coef": 160
+  }
+}
