@@ -541,7 +541,7 @@ input {
             <div class="container">
                 <div class="row">
                     <div class="col-3">
-						<button class="btn btn-outline-light btn-sm" onclick="exportData()" data-bs-toggle="tooltip" data-bs-html="true" title="匯出原始機體代碼">
+						<button class="btn btn-outline-light btn-sm" onclick="exportData()" data-bs-toggle="tooltip" data-bs-html="true" title="匯出原始機體代碼" data-toggle="modal" data-target="#alertModal">
 							<i class="bi bi-download"></i>
 						</button>
 						<button class="btn btn-outline-light btn-sm" onclick="showImportPrompt()" data-bs-toggle="tooltip" data-bs-html="true" title="匯入原始機體代碼">
@@ -572,6 +572,22 @@ input {
                 </div>
             </div>
         </div>
+		<div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLbl" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="alertModalLbl">匯出</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<p>匯出機體代碼已複製！</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+					</div>
+				</div>
+			</div>
+		</div>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lz-string@1.4.4/libs/lz-string.min.js"></script>
@@ -903,7 +919,7 @@ function exportData() {
 	const jsonStr = JSON.stringify(formData);
 	const compressed = LZString.compressToBase64(jsonStr);
 	navigator.clipboard.writeText(compressed);
-	alert('匯出機體代碼已複製！');
+	$('#alertModal').modal('show');	
 }
 
 function importData(code) {
