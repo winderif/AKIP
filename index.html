@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>
-		傷害計算 - 幻想神域全球服 v0.1
+		傷害計算 - 幻想神域全球服 v0.2
 	</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">	
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">	
@@ -48,7 +48,8 @@ input {
 					<div class="col-md-12">
 						<p class="h3 text-center bg-black py-2">原始角色機體</p>
 					</div>
-					<p class="text-warning">按畫面右下方『複製』按鈕，可將原始角色機體的數值複製到新機體</p>
+					<p class="text-warning fs-6 lh-1">按畫面右下方『複製』按鈕，可將原始角色機體的數值複製到新機體</p>
+					<p class="text-warning fs-6 lh-1">畫面左下方『匯出、匯入』按鈕，可將原始角色機體的數值匯出為代碼，可提供給他人匯入你設定的機體</p>
 				</div>
                 <div class="row mb-3">
                     <div class="col-md-6">
@@ -538,8 +539,14 @@ input {
         </div>
         <div class="fixed-bottom-bar">
             <div class="container">
-                <div class="row text-center">
+                <div class="row">
                     <div class="col-3">
+						<button class="btn btn-outline-light btn-sm" onclick="exportData()" data-bs-toggle="tooltip" data-bs-html="true" title="匯出原始機體代碼">
+							<i class="bi bi-download"></i>
+						</button>
+						<button class="btn btn-outline-light btn-sm" onclick="showImportPrompt()" data-bs-toggle="tooltip" data-bs-html="true" title="匯入原始機體代碼">
+							<i class="bi bi-upload"></i>
+						</button>
                     </div>
                     <div class="col-6 text-center fs-4" id="critResult">
 						0
@@ -547,10 +554,10 @@ input {
                     <div class="col-3 text-end">
                         <button class="btn btn-outline-light btn-sm" onclick="copyTo()" data-bs-toggle="tooltip" data-bs-html="true" title="複製數據到新機體">
                             <i class="bi bi-copy"></i>
-                        </button>
+                        </button>						
                     </div>
                 </div>
-                <div class="row text-center fs-6">
+                <div class="row fs-6">
                     <div class="col-12 text-center" id="critMinMax">
 						(0 ~ 0)
                     </div>
@@ -567,6 +574,7 @@ input {
         </div>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lz-string@1.4.4/libs/lz-string.min.js"></script>
 <script>
 let damageTable = {};
 let bossTable = {};
@@ -702,6 +710,20 @@ function clearInput(id) {
 	document.getElementById(id).focus();
 	calculateDamage();	
 }
+
+function applyThousandsSeparator(selector) {
+	$(selector)
+	// 阻止非數字與小數點輸入
+	.on('keypress', function(e) {		
+		const charCode = e.which ? e.which : e.keyCode;
+		if (charCode < 48 || charCode > 57) { // 不是 0-9
+			e.preventDefault();
+		}		
+	})	
+}
+
+// 套用到所有 class="number-input" 的欄位
+applyThousandsSeparator('.form-control');
 
 const form = document.getElementById('damageForm');
 form.addEventListener('input', calculateDamage);
@@ -869,6 +891,45 @@ function calculateAddDmg() {
 	label.className = 'text-danger fw-bold'; // 紅色
   }
 }
-        </script>
-    </body>
+function exportData() {
+  const formData = {};
+  document.querySelectorAll('#damageForm input, #damageForm select').forEach(el => {
+    if (el.type === 'checkbox') {
+      formData[el.id] = el.checked;
+    } else {
+      formData[el.id] = el.value;
+    }
+  });
+	const jsonStr = JSON.stringify(formData);
+	const compressed = LZString.compressToBase64(jsonStr);
+	navigator.clipboard.writeText(compressed);
+	alert('匯出機體代碼已複製！');
+}
+
+function importData(code) {
+  try {    
+	const decompressed = LZString.decompressFromBase64(code);
+    const data = JSON.parse(decompressed);
+    Object.keys(data).forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        if (el.type === 'checkbox') {
+          el.checked = data[id];
+        } else {
+          el.value = data[id];
+        }
+      }
+    });
+    calculateDamage();
+  } catch (e) {
+    alert('匯入失敗：格式錯誤');
+  }
+}
+
+function showImportPrompt() {
+	const code = prompt('請貼上匯入原始機體代碼：');
+	if (code) importData(code);
+}
+</script>
+</body>
 </html>
