@@ -4,79 +4,103 @@
     "dmg_dealt": -65,
     "dmg_taken": -50,
     "crit_dmg_taken": -50,
-    "def": 2.5,
-    "elem_dmg_taken": 0
+    "elem_dmg_taken": 0,
+    "def": 2.5
   },
   "boss2": {
     "bname": "卡迪拉妖森(裝備)(五人)＜暴食魔君＞葛恩尼",
     "dmg_dealt": -65,
     "dmg_taken": -50,
     "crit_dmg_taken": -50,
-    "def": 2.5,
-    "elem_dmg_taken": 0
+    "elem_dmg_taken": 0,
+    "def": 2.5
   },
   "boss3": {
     "bname": "寒霜冰境(裝備)(五人)＜深淵魔獸＞古斯格勒",
     "dmg_dealt": -65,
     "dmg_taken": -50,
     "crit_dmg_taken": -50,
-    "def": 40.17,
-    "elem_dmg_taken": 0
+    "elem_dmg_taken": 0,
+    "def": 40.17
   },
   "boss4": {
     "bname": "寒霜冰境(裝備)(五人)＜冰雪貴公子＞奧格斯",
     "dmg_dealt": -65,
     "dmg_taken": -65,
     "crit_dmg_taken": -50,
-    "def": 39.17,
-    "elem_dmg_taken": 0
+    "elem_dmg_taken": 0,
+    "def": 39.17
   },
   "boss5": {
     "bname": "寒霜冰境(裝備)(五人)＜黑闇領主＞黑騎士",
     "dmg_dealt": -65,
     "dmg_taken": -70,
     "crit_dmg_taken": -50,
-    "def": 38.21,
-    "elem_dmg_taken": 0
+    "elem_dmg_taken": 0,
+    "def": 38.21
   },
   "boss6": {
     "bname": "雷龍王的悲鳴之間＜雷龍王＞特拉洛克",
     "dmg_dealt": -55,
     "dmg_taken": -70,
     "crit_dmg_taken": -50,
-    "def": 43.2,
-    "elem_dmg_taken": 0
+    "elem_dmg_taken": 0,
+    "def": 43.2
   },
   "boss7": {
     "bname": "翔龍王的降臨(普通)＜翔龍王＞弗拉科嘉",
     "dmg_dealt": -55,
     "dmg_taken": -70,
     "crit_dmg_taken": -50,
-    "def": 43.2,
-    "elem_dmg_taken": 0
+    "elem_dmg_taken": 0,
+    "def": 43.2
   },
   "boss8": {
     "bname": "水龍王的圍困之役(普通)＜水龍之后＞莎亞娜",
     "dmg_dealt": -65,
     "dmg_taken": -80,
     "crit_dmg_taken": -50,
-    "def": 75.13,
-    "elem_dmg_taken": 0
+    "elem_dmg_taken": 0,
+    "def": 75.13
   },
   "boss9": {
     "bname": "翔龍王的降臨(困難)＜翔龍王＞弗拉科嘉",
     "dmg_dealt": -55,
     "dmg_taken": -80,
     "crit_dmg_taken": -50,
-    "def": 2.5,
-    "elem_dmg_taken": 0
+    "elem_dmg_taken": 0,
+    "def": 2.5
   },
   "boss10": {
     "bname": "水龍王的圍困之役(困難)＜水龍之后＞莎亞娜",
     "dmg_dealt": -65,
     "dmg_taken": -80,
     "crit_dmg_taken": -50,
-    "def": 75.13,
-    "elem_dmg_taken": 0
+    "elem_dmg_taken": 0,
+    "def": 75.13
+  },
+  "boss11": {
+    "bname": "天空之塔10F＜紅龍後裔＞莉安史薇雅",
+    "dmg_dealt": -55,
+    "dmg_taken": -70,
+    "crit_dmg_taken": -50,
+    "elem_dmg_taken": 0,
+    "def": 71.4
+  },
+  "boss12": {
+    "bname": "天空之塔15F＜血蛛女王＞妲瓦娜",
+    "dmg_dealt": -95,
+    "dmg_taken": -95,
+    "crit_dmg_taken": -50,
+    "elem_dmg_taken": -40,
+    "def": 75.84
+  },
+  "boss13": {
+    "bname": "天空之塔20F＜光明之神＞巴德爾",
+    "dmg_dealt": -95,
+    "dmg_taken": -95,
+    "crit_dmg_taken": -50,
+    "elem_dmg_taken": -40,
+    "def": 75.84
   }
 }
